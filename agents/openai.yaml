@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tech Branding & Logo"
+  short_description: "Brand tech products with names, logos, and identity systems"
+  default_prompt: "Use $tech-branding-logo to develop a tech product brand from an idea, a finalized name, or an existing identity."
+
+policy:
+  allow_implicit_invocation: true

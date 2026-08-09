@@ -1,0 +1,8 @@
+---
+description: End-to-end tech-product naming, logo, and identity workflow
+globs:
+  - "**/*"
+alwaysApply: false
+---
+
+Use the repository's `tech-branding-logo/SKILL.md` for branding tasks. Select one mode: zero-to-brand, name-to-brand, or brand-evolution. Load the relevant reference files progressively. Keep strategy upstream of logo design, generate quantity before refinement, test black/white and tiny sizes, and produce actual SVG/vector assets when possible. Apply `references/qc.md` and do not claim legal clearance.
