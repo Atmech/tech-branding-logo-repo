@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Tech Branding and Logo mark</title>
+  <desc id="desc">A modular black and lime mark made from a beam, an angled cut, and a rising block.</desc>
+  <path fill="#1a1b19" d="M4 4h56v18H40v38H22V22H4z"/>
+  <path fill="#caff70" d="M40 22h20v20H40z"/>
+  <path fill="#f4f0e8" d="M30 31h10v29H22V52z"/>
+  <path fill="#ff6a3d" d="M40 42h20v18H40z"/>
+</svg>

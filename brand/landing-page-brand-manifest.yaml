@@ -1,0 +1,114 @@
+project:
+  name: Tech Branding & Logo landing page
+  mode: brand-evolution
+  date: 2026-08-10
+foundation:
+  audience:
+    - AI-native technical founders building developer tools or B2B software
+    - Design engineers and agent builders who need a structured brand workflow
+  problem: Brand creation is often either a shallow prompt outcome or an expensive, disconnected consulting process.
+  promise: Turn product truth into an editable, tested brand system within an agent-led workflow.
+  proof:
+    - Three explicit operating modes
+    - Product-to-identity workflow with quantity, selection, and QC gates
+    - Agent adapters for Codex/OpenAI, Claude Code, Cursor, and generic environments
+  role: The rigorous creative partner between a technical product brief and usable identity assets.
+  personality: [structured, incisive, imaginative, product-literate]
+  tensions: [editorial but technical, expressive but accountable, open-source but considered]
+  anti_positioning: [one-click logo generator, generic AI aesthetics, surface-only moodboarding]
+  territories: [constructive blueprint, visual worktable, signal and interruption]
+naming:
+  status: screening_note
+  candidates: []
+  recommendation: Retain Tech Branding & Logo as the repository and descriptive product name. Use TBL only as a compact visual signature, not as an asserted new product name.
+nouns:
+  generated: [worktable, frame, beam, aperture, path, fault line, stamp, rail, notch, field, card, ruler, mast, spool, signal, blueprint, cut, route]
+  approved:
+    - noun: beam
+      rationale: A structural element that supports the product, echoed in the modular mark.
+    - noun: cut
+      rationale: Represents selection and the clear creative decision between many possible directions.
+    - noun: worktable
+      rationale: Makes the method feel constructively hands-on rather than magically generated.
+    - noun: signal
+      rationale: Uses highly visible lime and coral as moments of judgement and attention.
+  rejected: [brain, circuit, sparkle, robot, shield, generic gradient]
+concepts:
+  - id: c01
+    nouns: [beam, cut, signal]
+    silhouette: A dense structural block interrupted by a diagonal light cut and two signal planes.
+    geometry: 64 by 64 modular grid with an 18-unit cap and 20-unit stem.
+    negative_space: Stepped lower counter creates visible directional motion.
+    story: Product strategy is the beam; a precise creative decision reveals the system inside it.
+    app_icon: Strong at small sizes because the four planes preserve their relationship.
+    risks: [The mark relies on colour for its most expressive version; retain a monochrome version in product contexts.]
+    score: 4.2
+directions:
+  - id: d01
+    concept_ids: [c01]
+    rationale: The constructive-blueprint direction best matches a system that is technical without being cold and creative without relying on trend aesthetics.
+    logo_assets: [site/assets/tbl-mark.svg]
+    visual_dna:
+      colors: [paper '#f4f0e8', ink '#1a1b19', signal lime '#caff70', signal coral '#ff6a3d', system blue '#5a7eff']
+      type: [Georgia or editorial serif for propositions, system sans serif for utility]
+      icons: [modular paths, diagonal cuts, signal planes]
+      patterns: [off-axis lines, drafting grids, worktable cards]
+      motion: [slow continuous information ticker; no decorative motion required for comprehension]
+    tests: [responsive desktop and mobile layout, inline SVG asset, contrast checked for primary text/background pairs]
+  - id: d02
+    concept_ids: [c02, c10, c11, c22, c29, c37, c49]
+    rationale: Signal Flag uses an upright mast and escaped colour plane to express readiness and movement. It was retained as a social-motion secondary device but not selected because it has more familiar category associations.
+    logo_assets: []
+    visual_dna:
+      colors: [ink '#1a1b19', coral '#ff6a3d', paper '#f4f0e8']
+      type: [system sans serif]
+      icons: [mast, signal panel, route endpoint]
+      patterns: [vertical markers, offset flags]
+      motion: [panels entering from an anchored rail]
+    tests: [conceptual direction only; not released as a final mark]
+  - id: d03
+    concept_ids: [c04, c13, c16, c28, c30, c46, c48]
+    rationale: Open Aperture uses an off-axis frame and internal cut to show a product truth becoming visible. It informed the page layout but was not selected as the final mark because it is weaker in isolated small-size contexts.
+    logo_assets: []
+    visual_dna:
+      colors: [paper '#f4f0e8', blue '#5a7eff', ink '#1a1b19']
+      type: [editorial serif, system sans serif]
+      icons: [open frame, aperture, cut]
+      patterns: [crop rails, views, nested panels]
+      motion: [frame opening to reveal a route]
+    tests: [conceptual direction only; not released as a final mark]
+qc:
+  scores:
+    originality_differentiation: 4
+    simplicity: 4
+    memorability: 4
+    silhouette: 4
+    small_size_function: 4
+    monochrome_function: 4
+    legibility: 5
+    scalability: 4
+    product_fit: 5
+    emotional_fit: 4
+    system_extensibility: 5
+    accessibility_contrast: 4
+    production_readiness: 4
+    migration_safety: 4
+  blockers: []
+  open_risks:
+    - The current visual identity is new, so no existing public recognition is being preserved beyond the full repository name.
+    - Tracekit is a fictional illustrative example; replace it with a complete committed sample run before presenting it as a case study or real output.
+  decision: pass
+delivery:
+  files: [site/index.html, site/styles.css, site/script.js, site/assets/tbl-mark.svg, site/assets/tbl-mark-mono.svg, site/assets/tbl-lockup.svg, brand/landing-page-brand-strategy.md, brand/concept-catalog.md, brand/landing-page-brand-manifest.yaml]
+  usage_rules:
+    - Use the full Tech Branding & Logo name in first reference and external SEO contexts.
+    - Use TBL as a secondary visual signature only.
+    - Keep long-form propositions in the serif face and operational UI language in the sans serif face.
+    - Use lime for affirmative structure and coral for visual attention; neither is required for body-text recognition.
+    - Use the single-ink monochrome mark for favicons, engraving, printing, or surfaces where the colour planes are unreliable.
+  touchpoints: [GitHub repository homepage, open-source launch posts, agent-skill directories, product documentation]
+  migration:
+    - Add the site as GitHub Pages or a static deployment before replacing the repository README's primary entry point.
+    - Preserve the existing repository title, description, and MIT license during initial launch.
+  open_decisions:
+    - Validate the page’s promise and example with five to ten technical founders before formalising a new public product name.
