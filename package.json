@@ -1,0 +1,39 @@
+{
+  "name": "tech-branding-logo",
+  "version": "1.0.0",
+  "description": "Install and run the Tech Branding & Logo agent skill across AI coding environments.",
+  "type": "module",
+  "bin": {
+    "tech-branding-logo": "./bin/tech-branding-logo.js"
+  },
+  "files": [
+    "bin/",
+    "cli/",
+    "SKILL.md",
+    "references/",
+    "schemas/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "agent-skills",
+    "branding",
+    "logo-design",
+    "codex",
+    "claude-code",
+    "cursor",
+    "ai-agents"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atmech/tech-branding-logo-repo.git"
+  }
+}
