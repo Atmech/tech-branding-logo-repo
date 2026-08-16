@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Atmech/tech-branding-logo-repo/schemas/state.schema.json",
+  "title": "Tech Branding project state",
+  "type": "object",
+  "required": ["schemaVersion", "skill", "mode", "stage", "completedStages", "createdAt", "updatedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "skill": { "const": "tech-branding-logo" },
+    "skillVersion": { "type": "string" },
+    "mode": { "enum": ["zero-to-brand", "name-to-brand", "brand-evolution"] },
+    "projectName": { "type": "string" },
+    "stage": { "type": "string" },
+    "completedStages": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "contextCompleteness": { "type": "number", "minimum": 0, "maximum": 1 },
+    "answers": { "type": "object", "additionalProperties": { "type": "string" } },
+    "createdAt": { "type": "string" },
+    "updatedAt": { "type": "string" }
+  },
+  "additionalProperties": true
+}
