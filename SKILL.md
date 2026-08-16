@@ -17,6 +17,20 @@ Build a coherent tech-product brand from product truth through a usable logo and
 - Preserve useful recognition in a rebrand unless evidence supports a reset.
 - Never claim trademark, domain, or legal clearance from preliminary checks.
 
+## Project-state interoperability
+
+When a project contains `.branding/`, treat it as portable project memory shared across compatible agents:
+
+- Read `.branding/handoff.md`, `.branding/context.md`, and `.branding/state.json` before beginning or resuming work.
+- Treat `context.md` as user-supplied context, not as a branding conclusion.
+- Continue discovery adaptively. Do not repeat questions already answered unless the answer is contradictory or materially insufficient.
+- Ask a question only when its answer could materially change positioning, naming, identity direction, rebrand scope, or a production constraint.
+- Surface conflicts explicitly (for example, mutually incompatible desired perceptions) and resolve them before committing to a direction.
+- Update `.branding/state.json` when a stage meaningfully changes; preserve the existing schema fields and add fields rather than deleting unknown ones.
+- Record important choices, alternatives rejected, and reversals in `.branding/decisions.md` so another agent can continue the work without reconstructing history.
+- Put working brand artifacts under `.branding/outputs/` when the environment allows file creation. Existing source assets may be placed under `.branding/inputs/`.
+- Do not confuse installer onboarding with project discovery. Installation/setup is handled by the CLI; branding discovery begins from the project brief and continues here only as needed.
+
 ## Mode routing
 
 ### Zero-to-brand
