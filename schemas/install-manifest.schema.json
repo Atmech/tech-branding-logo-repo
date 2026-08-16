@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tech Branding installer manifest",
+  "type": "object",
+  "required": ["schemaVersion", "package", "version", "installedAt", "installs"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "package": { "const": "tech-branding-logo" },
+    "version": { "type": "string" },
+    "installedAt": { "type": "string" },
+    "cwd": { "type": "string" },
+    "installs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["agent", "target", "createdDirectory", "files"],
+        "properties": {
+          "agent": { "type": "string" },
+          "target": { "type": "string" },
+          "createdDirectory": { "type": "boolean" },
+          "files": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}
