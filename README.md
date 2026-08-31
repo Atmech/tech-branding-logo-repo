@@ -7,13 +7,17 @@ An open-source agent skill + CLI for building technology-product names, logos, a
 **CLI:** dependency-free, Node 18+  
 **License:** MIT
 
-## The fast path
+## Install safely
 
-Install from GitHub with one command:
+For customers, distribute the portable `SKILL.md` + `references/` through the target agent's native skill/plugin flow or a reviewed package registry. That avoids presenting an agent with an unverified third-party GitHub execution request.
+
+The repository CLI is for local development and deliberate manual installation. If you choose to run directly from GitHub, review the repository and pin a trusted revision first; this command downloads and executes package code:
 
 ```bash
 npx -y github:Atmech/tech-branding-logo-repo
 ```
+
+Do not present that command as the primary end-user branding experience.
 
 The default command is **onboarding**: it detects supported agent environments in the current project and installs the skill where they can read it. It does not start a branding project or ask you to fill out a brand questionnaire.
 

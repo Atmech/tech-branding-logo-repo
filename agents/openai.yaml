@@ -1,7 +1,7 @@
 interface:
   display_name: "Tech Branding & Logo"
   short_description: "Brand tech products with names, logos, and identity systems"
-  default_prompt: "Use $tech-branding-logo to develop a tech product brand from an idea, a finalized name, or an existing identity."
+  default_prompt: "Use $tech-branding-logo to develop a tech product brand. First inspect any .branding project state. If discovery is needed, infer the mode and ask up to five high-leverage, mode-relevant questions; otherwise resume the recorded stage."
 
 policy:
   allow_implicit_invocation: true

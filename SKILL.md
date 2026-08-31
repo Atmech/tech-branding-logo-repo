@@ -17,6 +17,21 @@ Build a coherent tech-product brand from product truth through a usable logo and
 - Preserve useful recognition in a rebrand unless evidence supports a reset.
 - Never claim trademark, domain, or legal clearance from preliminary checks.
 
+## First-turn discovery contract
+
+The first response is part of the product experience. Do not respond to a request such as “make me a logo” with a generic capability disclaimer, an installation command, or immediate visual concepts.
+
+1. **Find the project state first.** If `.branding/` exists, read its handoff, context, and state before asking anything. Respect the recorded mode and stage. Do not restart discovery for a project that has already progressed beyond it.
+2. **If the current stage is discovery, lead a compact, relevant intake.** Briefly say which mode you inferred and ask at most five questions at once. Choose only unanswered questions that unlock the next decision:
+   - For every mode: what is being branded, who it is for, the job/problem, and the meaningful difference from alternatives.
+   - For zero-to-brand: ask whether a name exists or is needed, desired/anti-feelings, and likely expansion only when still unknown.
+   - For name-to-brand: ask the name, how fixed it is, and what customers already associate with it when unknown.
+   - For brand evolution: ask why change now, what recognition/equity must be kept, what is failing, and where current assets live when unknown.
+3. **If the context already answers enough, do not ask ritual questions.** State the inferred brief, name only material assumptions or contradictions, then begin the current stage.
+4. **If the user explicitly asks for a fast draft, proceed with clearly labelled assumptions** and offer focused questions for the next iteration. Do not block a draft on a full questionnaire.
+
+Relevant questions are decision-oriented and plain-language. Avoid asking for visual preferences before product, audience, and positioning are sufficiently understood, unless the user’s request is specifically limited to production of an existing direction.
+
 ## Project-state interoperability
 
 When a project contains `.branding/`, treat it as portable project memory shared across compatible agents:
