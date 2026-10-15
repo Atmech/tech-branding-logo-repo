@@ -17,7 +17,7 @@ function parse(argv) {
 }
 
 function help() {
-  console.log(`\nTech Branding & Logo\n\nUsage:\n  tech-branding-logo                 Run installation onboarding\n  tech-branding-logo onboarding      Install into detected IDE/agent environments\n  tech-branding-logo brief           Create persistent project context\n  tech-branding-logo resume          Resume an existing brand project\n  tech-branding-logo doctor          Verify installation and project state\n  tech-branding-logo update          Refresh known skill files safely\n  tech-branding-logo export          Export a portable brand-kit/\n  tech-branding-logo uninstall       Remove only installer-tracked files\n\nOptions:\n  --agent=codex,claude,cursor         Override auto-detected install targets\n  --mode=zero-to-brand               Set brief mode explicitly\n  --out=brand-kit                     Export destination\n  --dry-run                           Show planned install/uninstall changes\n  --force                             Refresh existing known skill files\n  --help                              Show this help\n\nOnboarding means installation/setup. Project discovery begins with \`brief\`.\n`);
+  console.log(`\nTech Branding & Logo\n\nUsage:\n  tech-branding-logo                 Run installation onboarding\n  tech-branding-logo onboarding      Install into detected IDE/agent environments\n  tech-branding-logo brief           Create persistent project context\n  tech-branding-logo resume          Resume an existing brand project\n  tech-branding-logo doctor          Verify installation and project state\n  tech-branding-logo update          Refresh known skill files safely\n  tech-branding-logo export          Export a portable brand-kit/\n  tech-branding-logo uninstall       Remove only installer-tracked files\n\nOptions:\n  --agent=codex,claude,cursor         Override auto-detected install targets\n  --scope=campaign-direction        Set work scope (identity, campaign or application)\n  --mode=zero-to-brand               Set brief mode explicitly\n  --out=brand-kit                     Export destination\n  --dry-run                           Show planned install/uninstall changes\n  --force                             Refresh existing known skill files\n  --help                              Show this help\n\nOnboarding means installation/setup. Project discovery begins with \`brief\`.\n`);
 }
 
 export async function run(argv = []) {
@@ -26,6 +26,7 @@ export async function run(argv = []) {
   const opts = {
     agentArg: typeof flags.agent === 'string' ? flags.agent : '',
     mode: typeof flags.mode === 'string' ? flags.mode : '',
+    scope: typeof flags.scope === 'string' ? flags.scope : '',
     out: typeof flags.out === 'string' ? flags.out : 'brand-kit',
     dryRun: Boolean(flags['dry-run']),
     force: Boolean(flags.force),

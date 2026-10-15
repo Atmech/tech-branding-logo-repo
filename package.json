@@ -1,7 +1,7 @@
 {
   "name": "tech-branding-logo",
-  "version": "1.0.0",
-  "description": "Install and run the Tech Branding & Logo agent skill across AI coding environments.",
+  "version": "1.1.0",
+  "description": "Brand identities, campaigns and brand applications with domain-specific agent expertise.",
   "type": "module",
   "bin": {
     "tech-branding-logo": "./bin/tech-branding-logo.js"

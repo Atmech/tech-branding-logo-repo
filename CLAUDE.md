@@ -1,3 +1,3 @@
-# Claude Code adapter
+# Branding orchestrator adapter
 
-Apply `SKILL.md` as the source of truth for tech-product branding. Read the relevant files in `references/` progressively. Choose one of the three modes, maintain a decision log, and produce inspectable outputs (SVG, tokens, guidelines, previews) rather than prose-only recommendations. Run the QC rubric before declaring the work complete.
+Use `SKILL.md` as the canonical workflow. Read existing project state before intake. Infer one work scope (brand identity, campaign direction or brand application), then an identity submode only when relevant. Load only useful domain modules and overlays. Ask only consequential unanswered questions. Preserve approved decisions and keep temporary campaign changes separate from the master identity. Return scope-appropriate staged artifacts, actual editable assets when supported, QC evidence and the final manifest. Preserve schemas and QC gates across tools.

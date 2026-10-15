@@ -9,7 +9,7 @@ const c = {
   yellow: (s) => tty ? `\x1b[33m${s}\x1b[0m` : s,
 };
 
-export function intro(subtitle = 'AI-native branding for technology products') {
+export function intro(subtitle = 'Brand identities, campaigns and applications') {
   console.log(`\n${c.bold('Tech Branding & Logo')}\n${c.dim(subtitle)}\n`);
 }
 

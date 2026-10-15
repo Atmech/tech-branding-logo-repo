@@ -1,4 +1,4 @@
-# Brand strategy for tech products
+# Brand strategy
 
 ## Minimum input
 
@@ -16,4 +16,4 @@ Write one sentence each for: user transformation, brand role, core promise, reas
 
 ## Positioning sentence
 
-Use: “For [primary user] who [undesirable situation], [product] is the [category/role] that [unique outcome], because [proof]. Unlike [alternative], it [meaningful distinction].” Keep the final sentence concise and test it against real product behavior.
+Use: “For [primary user] who [undesirable situation], [product] is the [category/role] that [unique outcome], because [proof]. Unlike [alternative], it [meaningful distinction].” Keep the final sentence concise and test it against real product or service behavior.

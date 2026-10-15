@@ -15,6 +15,9 @@ test('generic onboarding installs the skill and doctor passes', async () => {
   await onboarding({ cwd, agentArg: 'generic' });
   assert.ok(fs.existsSync(path.join(cwd, 'skills/tech-branding-logo/SKILL.md')));
   assert.ok(fs.existsSync(path.join(cwd, 'skills/tech-branding-logo/references')));
+  for (const file of ['domains/technology.md', 'domains/food-hospitality.md', 'domains/real-estate.md', 'domains/fashion-apparel.md', 'overlays/b2b.md', 'campaign-direction.md', 'brand-application.md']) {
+    assert.ok(fs.existsSync(path.join(cwd, 'skills/tech-branding-logo/references', file)), file);
+  }
   assert.equal(doctor({ cwd }), true);
 });
 

@@ -1,5 +1,3 @@
-# Tech Branding & Logo adapter
+# Branding orchestrator adapter
 
-Use the parent `SKILL.md` as the canonical workflow. For each request, route to one mode, load only the relevant references, and return staged artifacts plus the final manifest. Create actual SVG/vector/image assets when tools support them; otherwise emit structured concepts and construction instructions.
-
-This adapter is intended for Codex/OpenAI agents. Preserve the same schemas and QC gates across tools.
+Use `SKILL.md` as the canonical workflow. Read existing project state before intake. Infer one work scope (brand identity, campaign direction or brand application), then an identity submode only when relevant. Load only useful domain modules and overlays. Ask only consequential unanswered questions. Preserve approved decisions and keep temporary campaign changes separate from the master identity. Return scope-appropriate staged artifacts, actual editable assets when supported, QC evidence and the final manifest. Preserve schemas and QC gates across tools.

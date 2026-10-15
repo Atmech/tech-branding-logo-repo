@@ -1,8 +1,8 @@
 ---
-description: End-to-end tech-product naming, logo, and identity workflow
+description: Brand identities, campaigns and applications with selective domain expertise
 globs:
   - "**/*"
 alwaysApply: false
 ---
 
-Use the repository's `tech-branding-logo/SKILL.md` for branding tasks. Select one mode: zero-to-brand, name-to-brand, or brand-evolution. Load the relevant reference files progressively. Keep strategy upstream of logo design, generate quantity before refinement, test black/white and tiny sizes, and produce actual SVG/vector assets when possible. Apply `references/qc.md` and do not claim legal clearance.
+Use the repository's `SKILL.md` as the canonical branding orchestrator. Read project state, infer identity/campaign/application scope and load only relevant domain modules and overlays. Preserve approved decisions; keep temporary campaign overrides separate from master identity. Ask only consequential unanswered questions. Produce actual assets when possible and use scope-specific delivery schemas and QC on intended surfaces. Do not claim legal clearance.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0
+
+- Added identity, campaign and application routing with selective industry modules.
+- Added technology, food/hospitality, real estate and fashion guidance plus B2B/packaging overlays.
+- Added campaign freedom, continuity records and scope-specific delivery/QC.
+- Replaced the fixed CLI questionnaire with compact context capture; existing briefs resume safely.
+- Extended project state additively; legacy identity projects retain their modes and stages.
+- Added research provenance and comparative evaluation protocols; visual improvement remains unmeasured.
+
 ## 1.0.0
 
 Initial CLI product layer around the Tech Branding & Logo skill.

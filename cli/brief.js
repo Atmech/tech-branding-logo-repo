@@ -1,6 +1,5 @@
 import fs from 'node:fs';
-import path from 'node:path';
-import { ask, choose, intro, ok, section } from './ui.js';
+import { ask, intro, ok, section } from './ui.js';
 import { defaultState, ensureDir, statePaths, writeJson, readJson } from './state.js';
 
 const MODE_OPTIONS = [
@@ -9,78 +8,33 @@ const MODE_OPTIONS = [
   { value: 'brand-evolution', label: 'Rebranding something existing' },
 ];
 
-const COMMON = [
-  ['product', 'What are you building or branding?'],
-  ['audience', 'Who is it mainly for?'],
-  ['job', 'What job/problem does it solve for them?'],
-  ['alternatives', 'What do people use instead today?'],
-  ['difference', 'What makes your approach meaningfully different?'],
-];
+const SCOPES = ['brand-identity', 'campaign-direction', 'brand-application'];
 
-const QUESTIONS = {
-  'zero-to-brand': [
-    ...COMMON,
-    ['desiredFeeling', 'What should the brand make people feel?'],
-    ['antiFeeling', 'What should it absolutely not feel like?'],
-    ['future', 'Where might the product/company expand in the next 2–5 years?'],
-    ['constraints', 'Any market, accessibility, technical, or visual constraints?'],
-  ],
-  'name-to-brand': [
-    ['name', 'What is the existing name?'],
-    ...COMMON,
-    ['nameOrigin', 'Why was the name chosen, if there is a real reason?'],
-    ['nameFixed', 'How fixed is the name: final, strongly preferred, or still reconsiderable?'],
-    ['existingMeaning', 'Does the name already mean anything to customers?'],
-    ['desiredFeeling', 'What should the name and identity come to represent?'],
-    ['constraints', 'Any pronunciation, spelling, market, technical, or visual constraints?'],
-  ],
-  'brand-evolution': [
-    ['name', 'What is the current product/company name?'],
-    ...COMMON,
-    ['whyNow', 'Why are you changing the brand now?'],
-    ['working', 'What parts of the current identity are working or recognized?'],
-    ['failing', 'Where does the current identity fail?'],
-    ['mustKeep', 'What, if anything, must survive the rebrand?'],
-    ['desiredShift', 'What perception should change after the rebrand?'],
-    ['assets', 'Where are the current assets/guidelines/screenshots located?'],
-  ],
-};
-
-function markdown(mode, answers) {
-  const title = answers.name || answers.product || 'Brand project';
-  const rows = Object.entries(answers).map(([key, value]) => `## ${key}\n\n${value || '_Unknown / to be clarified by the agent_'}\n`).join('\n');
-  return `# ${title}\n\nMode: \`${mode}\`\n\nThis file captures user context, not branding conclusions. The agent must use the installed Tech Branding & Logo skill for methodology and ask only additional questions that could materially change the direction.\n\n${rows}`;
-}
-
-function handoff(mode, answers) {
-  const project = answers.name || answers.product || 'this project';
-  return `# Agent handoff\n\nUse the installed \`tech-branding-logo\` skill in \`${mode}\` mode for **${project}**.\n\nRead \`.branding/context.md\` and \`.branding/state.json\` first. Treat those files as user context, not as branding conclusions. Respect the recorded stage; do not restart discovery if the project has progressed beyond it.\n\nIf the current stage is discovery, make your first reply useful: state the inferred mode, then ask no more than five plain-language questions that fill only material gaps. Prioritize product, audience, job/problem, meaningful difference, and the mode-specific unknowns. Do not ask a ritual questionnaire or jump to logo concepts. If the context is already sufficient, summarize it, name material assumptions or contradictions, and begin the current stage. If the user asks for a fast draft, proceed with labelled assumptions rather than blocking.\n\nOnce context is sufficient, summarize the brief, state assumptions and unresolved risks, update \`.branding/state.json\`, and proceed through the skill's staged methodology. Preserve decisions and rejected directions in \`.branding/decisions.md\`.\n`;
-}
-
-export async function createBrief({ cwd = process.cwd(), mode: modeArg = '' } = {}) {
+export async function createBrief({ cwd = process.cwd(), mode: modeArg = '', scope: scopeArg = '', prompt = ask } = {}) {
   intro('Project brief — context for the branding skill');
-  const mode = modeArg || await choose('What are we doing?', MODE_OPTIONS);
-  if (!QUESTIONS[mode]) throw new Error(`Unknown mode: ${mode}`);
-
-  section('A few high-leverage questions');
-  const answers = {};
-  for (const [key, question] of QUESTIONS[mode]) answers[key] = await ask(question, { required: ['product', 'name', 'audience'].includes(key) });
-
   const paths = statePaths(cwd);
+  // A new intake must never overwrite an existing project's decisions or progress.
+  if (fs.existsSync(paths.state)) return resumeBrief({ cwd });
+  const scope = scopeArg || 'brand-identity';
+  if (!SCOPES.includes(scope)) throw new Error(`Unknown scope: ${scope}`);
+  if (modeArg && !MODE_OPTIONS.some(({ value }) => value === modeArg)) throw new Error(`Unknown mode: ${modeArg}`);
+  if (modeArg && scope !== 'brand-identity') throw new Error('--mode applies only to brand-identity; use --scope for campaigns or applications.');
+  const mode = scope === 'brand-identity' ? (modeArg || 'zero-to-brand') : null;
+
+  section('A short starting brief; your agent will infer details and ask only what is missing');
+  const answers = {
+    request: await prompt('What are we making, and what do you want people to do after seeing it?', { required: true }),
+  };
+  answers.context = await prompt('Anything else to add: existing assets, references or fixed requirements? (optional)');
   ensureDir(paths.root); ensureDir(paths.inputs); ensureDir(paths.outputs);
-  fs.writeFileSync(paths.context, markdown(mode, answers));
-  fs.writeFileSync(paths.handoff, handoff(mode, answers));
+  fs.writeFileSync(paths.context, `# Brand project\n\nScope hint: ${scope}\nIdentity mode hint: ${mode || 'not applicable'}\n\n## Request\n\n${answers.request || '_Not supplied_'}\n\n## Additional context\n\n${answers.context || '_Not supplied_'}\n\nUser context, not branding conclusions. Infer scope and relevant expertise from the actual request.\n`);
+  fs.writeFileSync(paths.handoff, `# Agent handoff\n\nUse the installed tech-branding-logo skill. Read context.md, state.json and decisions.md in .branding before starting. Infer scope and domain from the request; initial CLI scope/mode are hints. Preserve approved decisions and resume the recorded stage. Ask only consequential unanswered questions, usually 1–3 and at most five at once. An answer may supply several fields. Begin when enough is known; label assumptions for fast drafts. Keep campaign overrides and outputs separate from the master identity. Update state without deleting unknown fields.\n`);
   if (!fs.existsSync(paths.decisions)) fs.writeFileSync(paths.decisions, '# Decisions and rejected directions\n\n');
-  const state = defaultState(mode, answers.name || answers.product || '');
-  state.contextCompleteness = Object.values(answers).filter(Boolean).length / Object.keys(answers).length;
+  const state = defaultState(mode, '', scope);
   state.answers = answers;
   writeJson(paths.state, state);
-
-  ok('Created .branding/context.md');
-  ok('Created .branding/state.json');
-  ok('Created .branding/handoff.md');
-  console.log('\nOpen your agent and say:');
-  console.log('  "Read .branding/handoff.md and continue the brand project."');
+  ok('Created .branding context, state and handoff');
+  console.log('Open your agent and say: "Read .branding/handoff.md and continue the brand project."');
   return state;
 }
 
@@ -89,7 +43,7 @@ export function resumeBrief({ cwd = process.cwd() } = {}) {
   const paths = statePaths(cwd);
   const state = readJson(paths.state);
   if (!state) throw new Error('No .branding/state.json found. Run `tech-branding-logo brief` first.');
-  console.log(`Project: ${state.projectName || 'Unnamed'}\nMode: ${state.mode}\nCurrent stage: ${state.stage}\n`);
+  console.log(`Project: ${state.projectName || 'Unnamed'}\nScope: ${state.scope || 'brand-identity'}\nMode: ${state.mode || 'not applicable'}\nCurrent stage: ${state.stage}\n`);
   if (state.completedStages?.length) console.log(`Completed: ${state.completedStages.join(', ')}\n`);
   console.log('Open your agent and say:');
   console.log('  "Read .branding/handoff.md and .branding/state.json, then resume from the current stage."');

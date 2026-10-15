@@ -76,7 +76,7 @@ export async function onboarding({ cwd = process.cwd(), agentArg = '', force = f
   const manifest = {
     schemaVersion: 1,
     package: 'tech-branding-logo',
-    version: '1.0.0',
+    version: '1.1.0',
     installedAt: new Date().toISOString(),
     cwd,
     installs,

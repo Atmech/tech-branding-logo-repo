@@ -1,6 +1,6 @@
 # Tech Branding & Logo
 
-An open-source agent skill + CLI for building technology-product names, logos, and visual identity systems.
+An open-source branding orchestrator + CLI for lasting identities, temporary campaigns, and assets within established brands. Includes technology, food/hospitality, real estate and fashion/apparel guidance, with B2B and packaging overlays. The existing package/skill identifier remains `tech-branding-logo`.
 
 **Skill entrypoint:** [`SKILL.md`](SKILL.md)  
 **Required skill context:** [`references/`](references/)  
@@ -57,13 +57,14 @@ Create a persistent project brief:
 npx -y github:Atmech/tech-branding-logo-repo -- brief
 ```
 
-The CLI asks a small set of high-leverage questions for one of three entry points:
+The CLI captures a short request and optional context; the agent interprets it and asks only consequential follow-ups. Existing project state is resumed without overwriting progress.
 
-- **Zero-to-brand** — product idea with no settled name yet.
-- **Name-to-brand** — finalized or strongly preferred name with no established brand psychology.
-- **Brand evolution** — an existing identity that needs a refresh, evolution, or reset.
+Work scopes are `brand-identity` (default), `campaign-direction`, and `brand-application`. Identity retains the submodes `zero-to-brand`, `name-to-brand`, and `brand-evolution`. Campaigns support brand-led, brand-adjacent and independent creative freedom, with explicit fixed requirements and temporary overrides.
 
-The questions only collect context. The branding expertise remains in `SKILL.md` + `references/`. The agent is explicitly told to continue discovery adaptively and ask only additional questions whose answers could materially change the direction.
+```bash
+node ./bin/tech-branding-logo.js brief --scope=campaign-direction
+node ./bin/tech-branding-logo.js brief --scope=brand-application
+```
 
 The working project state lives in:
 
@@ -121,20 +122,11 @@ npx -y github:Atmech/tech-branding-logo-repo -- uninstall
 
 The CLI is the experience/state layer. The skill is the expertise layer.
 
-The skill moves from product truth and brand psychology through naming, brand nouns, high-volume concept generation, black-and-white logo refinement, product-surface testing, visual-system extension, and QC.
+The orchestrator infers scope and selects useful expertise, maintains a compact brief, and runs the appropriate workflow. Identity work retains strategy, naming when needed, concept exploration, refinement and production checks. Campaign work produces a concept, key visual, variation rules and channel assets. Application work follows an approved identity without reopening naming or logo design.
 
-1. Product truth and brief
-2. Brand foundation and positioning
-3. Naming, when required
-4. Brand nouns and visual territories
-5. 50+ low-cost concept directions
-6. Three developed directions
-7. Black-and-white refinement
-8. Product-surface and small-size testing
-9. Visual identity system extension
-10. Final manifest and QC
+Modules are loaded selectively in one agent. B2B informs buying decisions without imposing one aesthetic. Tests follow actual surfaces: signage, packaging, garments, menus, product UI and other requested assets. Campaign colours and typography stay separate from master brand rules.
 
-The skill progressively loads the appropriate files from [`references/`](references/) rather than becoming one giant prompt.
+See [evaluation scenarios](references/evaluation.md) and the [research capture/backlog](references/research-method.md). Initial industry guidance is original and provisional; book research and comparative visual improvement are not claimed as complete.
 
 ## Architecture
 
@@ -187,7 +179,10 @@ tech-branding-logo/
     ├── rebrand-audit.md
     ├── logo-workflow.md
     ├── deliverable-schemas.md
-    └── qc.md
+    ├── qc.md
+    ├── domains/
+    ├── overlays/
+    └── campaign-direction.md  # plus scope, research and evaluation references
 ```
 
 ## Plugin publishing

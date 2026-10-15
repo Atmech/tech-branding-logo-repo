@@ -25,12 +25,15 @@ export function installManifestPath(cwd = process.cwd()) {
   return path.join(cwd, INSTALL_DIR, 'install.json');
 }
 
-export function defaultState(mode, projectName = '') {
+export function defaultState(mode, projectName = '', scope = 'brand-identity') {
   return {
     schemaVersion: 1,
     skill: 'tech-branding-logo',
-    skillVersion: '1.0.0',
+    skillVersion: '1.1.0',
+    scope,
     mode,
+    domains: [],
+    overlays: [],
     projectName,
     stage: 'discovery',
     completedStages: [],
