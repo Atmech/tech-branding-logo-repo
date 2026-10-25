@@ -48,13 +48,13 @@ Use a recent host version; organization policy may control additional marketplac
 
 ## Skills ecosystem
 
-branded follows the open skill format. The [Skills CLI](https://github.com/vercel-labs/skills) supports Codex, Claude Code and many other hosts; its current version requires Node.js 22.20+. From this checkout, use the isolated skill payload:
+branded follows the open skill format. The [Skills CLI](https://github.com/vercel-labs/skills) supports Codex, Claude Code and many other hosts; its current version requires Node.js 22.20+. The remote preview can also be installed directly with the Skills CLI:
 
 ```sh
-npx skills add ./plugins/branded/skills/branded --skill branded -a codex -g
+npx skills add Atmech/tech-branding-logo-repo/plugins/branded/skills/branded#codex/easy-install --skill branded -a codex -g
 ```
 
-For a remote preview, use the GitHub URL of `plugins/branded/skills/branded` at a commit containing the marketplace bundle. Do not use the old main-branch skill name before the rename stack merges. A Skills-compatible source is not a claim of leaderboard indexing or endorsement.
+This source selects only the complete skill payload, rather than copying the repository's website and project files. For Claude Code, change `-a codex` to `-a claude-code`. A Skills-compatible source is not a claim of leaderboard indexing or endorsement. This route was verified in a fresh temporary project; add `-g` for personal scope as shown.
 
 ## Updates and removal
 
