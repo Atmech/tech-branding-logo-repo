@@ -10,7 +10,7 @@ const c = {
 };
 
 export function intro(subtitle = 'Brand identities, campaigns and applications') {
-  console.log(`\n${c.bold('Tech Branding & Logo')}\n${c.dim(subtitle)}\n`);
+  console.log(`\n${c.bold('branded')}\n${c.dim(subtitle)}\n`);
 }
 
 export function ok(message) { console.log(`${c.green('✓')} ${message}`); }

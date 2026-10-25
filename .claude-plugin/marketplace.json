@@ -1,0 +1,12 @@
+{
+  "name": "branded",
+  "owner": { "name": "Atmech" },
+  "metadata": { "description": "Brand strategy, identity and campaign workflows for your agent." },
+  "plugins": [
+    {
+      "name": "branded",
+      "source": "./plugins/branded",
+      "description": "A clear point of view. A brand you can build on."
+    }
+  ]
+}

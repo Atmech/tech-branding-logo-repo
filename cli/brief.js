@@ -28,7 +28,7 @@ export async function createBrief({ cwd = process.cwd(), mode: modeArg = '', sco
   answers.context = await prompt('Anything else to add: existing assets, references or fixed requirements? (optional)');
   ensureDir(paths.root); ensureDir(paths.inputs); ensureDir(paths.outputs);
   fs.writeFileSync(paths.context, `# Brand project\n\nScope hint: ${scope}\nIdentity mode hint: ${mode || 'not applicable'}\n\n## Request\n\n${answers.request || '_Not supplied_'}\n\n## Additional context\n\n${answers.context || '_Not supplied_'}\n\nUser context, not branding conclusions. Infer scope and relevant expertise from the actual request.\n`);
-  fs.writeFileSync(paths.handoff, `# Agent handoff\n\nUse the installed tech-branding-logo skill. Read context.md, state.json and decisions.md in .branding before starting. Infer scope and domain from the request; initial CLI scope/mode are hints. Preserve approved decisions and resume the recorded stage. Ask only consequential unanswered questions, usually 1–3 and at most five at once. An answer may supply several fields. Begin when enough is known; label assumptions for fast drafts. Keep campaign overrides and outputs separate from the master identity. Update state without deleting unknown fields.\n`);
+  fs.writeFileSync(paths.handoff, `# Agent handoff\n\nUse the installed branded skill. Read context.md, state.json and decisions.md in .branding before starting. Infer scope and domain from the request; initial CLI scope/mode are hints. Preserve approved decisions and resume the recorded stage. Ask only consequential unanswered questions, usually 1–3 and at most five at once. An answer may supply several fields. Begin when enough is known; label assumptions for fast drafts. Keep campaign overrides and outputs separate from the master identity. Update state without deleting unknown fields.\n`);
   if (!fs.existsSync(paths.decisions)) fs.writeFileSync(paths.decisions, '# Decisions and rejected directions\n\n');
   const state = defaultState(mode, '', scope);
   state.answers = answers;
@@ -42,7 +42,7 @@ export function resumeBrief({ cwd = process.cwd() } = {}) {
   intro('Resume');
   const paths = statePaths(cwd);
   const state = readJson(paths.state);
-  if (!state) throw new Error('No .branding/state.json found. Run `tech-branding-logo brief` first.');
+  if (!state) throw new Error('No .branding/state.json found. Run `branded brief` first.');
   console.log(`Project: ${state.projectName || 'Unnamed'}\nScope: ${state.scope || 'brand-identity'}\nMode: ${state.mode || 'not applicable'}\nCurrent stage: ${state.stage}\n`);
   if (state.completedStages?.length) console.log(`Completed: ${state.completedStages.join(', ')}\n`);
   console.log('Open your agent and say:');

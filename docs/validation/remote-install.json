@@ -1,0 +1,13 @@
+{
+  "claude": {
+    "source": "Atmech/tech-branding-logo-repo#codex/easy-install",
+    "registered": true,
+    "installed": true,
+    "oneSkillConfirmed": true
+  },
+  "skillsCLI": {
+    "source": "Atmech/tech-branding-logo-repo/plugins/branded/skills/branded#codex/easy-install",
+    "installed": true,
+    "completePayload": true
+  }
+}

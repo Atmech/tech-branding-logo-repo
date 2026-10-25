@@ -20,6 +20,7 @@ for (const scope of ['brand-identity', 'campaign-direction', 'brand-application'
     const state = await createBrief({ cwd, scope, prompt: async () => supplied[calls++] });
     assert.equal(calls, 2);
     assert.equal(state.scope, scope);
+    assert.equal(state.skill, 'branded');
     assert.equal(state.mode, scope === 'brand-identity' ? 'zero-to-brand' : null);
     assert.deepEqual(state.answers, { request: supplied[0], context: supplied[1] });
     const saved = JSON.parse(fs.readFileSync(path.join(cwd, '.branding/state.json')));
@@ -34,6 +35,7 @@ test('legacy project is resumed byte-for-byte without asking or replacing decisi
   const dir = path.join(cwd, '.branding');
   fs.mkdirSync(dir);
   const legacy = defaultState('name-to-brand', 'Existing');
+  legacy.skill = 'tech-branding-logo';
   delete legacy.scope;
   legacy.stage = 'refinement';
   legacy.completedStages = ['discovery', 'foundation'];

@@ -1,10 +1,10 @@
 {
-  "name": "tech-branding-logo",
-  "version": "1.1.0",
+  "name": "branded",
+  "version": "1.2.0",
   "description": "Brand identities, campaigns and brand applications with domain-specific agent expertise.",
   "type": "module",
   "bin": {
-    "tech-branding-logo": "./bin/tech-branding-logo.js"
+    "branded": "./bin/branded.js"
   },
   "files": [
     "bin/",
@@ -14,10 +14,21 @@
     "schemas/",
     "templates/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "agents/",
+    "assets/",
+    "docs/",
+    "scripts/",
+    "plugins/",
+    "PLUGIN_PUBLISHING.md",
+    "build-source.json"
   ],
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "validate": "node scripts/validate.js",
+    "build:release": "node scripts/build-release.js",
+    "build:marketplace": "node scripts/build-marketplace.js",
+    "check:marketplace": "node scripts/build-marketplace.js --check"
   },
   "engines": {
     "node": ">=18"

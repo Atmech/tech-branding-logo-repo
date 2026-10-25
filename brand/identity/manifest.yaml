@@ -1,0 +1,180 @@
+project:
+  name: branded
+  scope: brand-identity
+  mode: brand-evolution
+  date: '2026-10-25'
+foundation:
+  audience: [builders and small teams already working with agents]
+  problem: Creative choices feel disconnected from the product, and context is lost between sessions.
+  promise: A clear point of view. A brand you can build on.
+  proof: [focused brief, selective expertise, distinct creative directions, editable output when supported, quality checks, portable project memory]
+  role: A creative partner helping the user make decisions they can stand behind.
+  personality: [deliberate, candid, inventive]
+  tensions: [considered and expressive, structured and open, candid and encouraging]
+  anti_positioning: [instant perfect-brand promises, decoration without reasoning, invented proof]
+  territories: [the considered cut, the editorial proofline, the open frame]
+naming:
+  status: not_applicable
+  candidates: []
+  recommendation: Retain the owner-selected lowercase name branded; do not reopen naming.
+routing:
+  primary_domain: technology
+  supporting_domains: []
+  overlays: []
+  reasons:
+    technology: Digital logo recognition, agent capabilities, installation and portable files affect production.
+brief:
+  confirmed:
+    name: branded
+    request: Develop the skill's own psychology, logo, homepage and practical branding guidance.
+    visual_preference: Preserve the supplied paper, ink, lime and coral editorial/worktable design.
+    installation: Keep homepage instructions aligned with the actual installer.
+  assumptions: [Primary audience is builders and small teams using agents; existing visual recognition is unmeasured.]
+  unresolved: [Owner review of the proposed mark and voice, user response, competitive screening, live deployment.]
+  approved_decisions: [The name and preferred visual language were explicitly selected by the owner.]
+  rejected_directions: [Unrelated palette reset, reopening naming, automatic AI symbols, unsupported publishing claims.]
+nouns:
+  generated: [cut, counter, page, proofline, frame, stem, bowl, desk, card, edge, baseline, imprint, crop, aperture, route]
+  approved:
+    - noun: cut
+      rationale: Designer-selected metaphor for a considered choice; owner review pending.
+    - noun: counter
+      rationale: The negative space makes the letter recognizable and carries the cut.
+    - noun: card
+      rationale: A tangible working object that connects to the preferred homepage composition.
+  rejected: [sparkle, circuit, robot, shield]
+concepts:
+  - id: cut-01
+    nouns: [stem, counter, cut]
+    silhouette: Solid lowercase b with a broad bowl.
+    geometry: 68-unit viewBox, 14-unit stem, rounded bowl and angled counter.
+    negative_space: One open counter with a diagonal lower-right edge.
+    story: A direct name initial with an editorial act of selection.
+    app_icon: Dedicated optical small-size variant for 16px favicon use.
+    risks: [Letter b is common; market distinctiveness and legal clearance untested.]
+    score: 4.2
+  - id: proofline-04
+    nouns: [page, proofline]
+    silhouette: Serif lowercase wordmark above a substantial underline.
+    geometry: Editorial letterforms with a horizontal proofline and terminal gesture.
+    negative_space: Open space above and around the line.
+    story: Brand as an editor who makes the idea clear.
+    app_icon: Weaker detached identity at small sizes.
+    risks: [Publication-like category signal; detached underline is generic.]
+    score: 3.9
+  - id: frame-07
+    nouns: [frame, desk]
+    silhouette: Sans lowercase wordmark inside open brackets.
+    geometry: Upright bracket rails around a wordmark.
+    negative_space: Open shared work area around the name.
+    story: A collaborative place for the user's judgement.
+    app_icon: Broad enclosure makes a compact icon difficult.
+    risks: [Familiar editor-bracket association.]
+    score: 3.8
+directions:
+  - id: considered-cut
+    concept_ids: [cut-01]
+    rationale: Recommended for compact use, direct name association and color-independent construction.
+    logo_assets: [site/assets/branded-mark.svg, site/assets/branded-lockup.svg, site/assets/branded-mark-mono.svg, site/assets/brand/lockup-reversed.svg, site/assets/brand/favicon.svg]
+    visual_dna:
+      colors: ['paper #f4f0e8', 'ink #1a1b19', 'lime #caff70', 'coral #ff6a3d', 'large-text coral #eb542c']
+      type: [editorial Georgia, system sans utility, outlined logo letterforms]
+      icons: [the considered-cut b]
+      patterns: [editorial desk, single cut, offset edge, work cards]
+      motion: [decorative ticker respecting reduced-motion preferences]
+    tests: [monochrome reproduction, favicon and navigation use, browser rendering, automated accessibility]
+  - id: editorial-proofline
+    concept_ids: [proofline-04]
+    rationale: Developed alternative; expressive editorial voice but weaker small standalone mark.
+    logo_assets: [brand/identity/directions.svg]
+    visual_dna:
+      colors: [paper, ink, coral]
+      type: [Georgia]
+      icons: [proofline]
+      patterns: [baseline]
+      motion: []
+    tests: [rendered direction board; not a final production direction]
+  - id: open-frame
+    concept_ids: [frame-07]
+    rationale: Developed alternative; communicates collaboration but adds a familiar coding frame and broad footprint.
+    logo_assets: [brand/identity/directions.svg]
+    visual_dna:
+      colors: [paper, ink, coral]
+      type: [system sans]
+      icons: [open brackets]
+      patterns: [working frame]
+      motion: []
+    tests: [rendered direction board; not a final production direction]
+qc:
+  scores:
+    originality_differentiation: 3
+    simplicity: 5
+    memorability: 4
+    silhouette: 4
+    small_size_function: 4
+    monochrome_function: 5
+    legibility: 4
+    scalability: 5
+    product_fit: 4
+    emotional_fit: 4
+    system_extensibility: 4
+    accessibility_contrast: 4
+    production_readiness: 4
+    migration_safety: 4
+  average: 4.14
+  blockers: []
+  open_risks: [No competitive or legal screening; emotional response unmeasured; manual assistive-technology and live-host checks pending; no public deployment performed.]
+  decision: pass
+  evidence: brand/identity/qc.md
+  interpretation: Local digital delivery passed internal checks; recommendation remains subject to owner review.
+delivery:
+  files:
+    - brand/identity/strategy.md
+    - brand/identity/exploration.md
+    - brand/identity/guidelines.md
+    - brand/identity/tokens.json
+    - brand/identity/studies.svg
+    - brand/identity/studies.png
+    - brand/identity/directions.svg
+    - brand/identity/directions.png
+    - brand/identity/identity-sheet.svg
+    - brand/identity/identity-sheet.png
+    - brand/identity/reproduction-checks.svg
+    - brand/identity/reproduction-checks.png
+    - site/assets/branded-mark.svg
+    - site/assets/branded-mark-mono.svg
+    - site/assets/branded-lockup.svg
+    - site/assets/brand/wordmark.svg
+    - site/assets/brand/mark-reversed.svg
+    - site/assets/brand/lockup-reversed.svg
+    - site/assets/brand/avatar.svg
+    - site/assets/brand/avatar.png
+    - site/assets/brand/social-card.svg
+    - site/assets/brand/social-card.png
+    - site/assets/brand/favicon.svg
+    - assets/branded-icon.png
+    - assets/branded-logo.svg
+    - site/index.html
+    - site/brand-guide.html
+    - site/styles.css
+    - site/script.js
+    - README.md
+    - agents/openai.yaml
+    - brand/identity/qc.md
+    - brand/identity/browser-checks.json
+    - brand/identity/accessibility-checks.json
+    - brand/identity/manifest.yaml
+  usage_rules:
+    - Lowercase name; pair with Brand strategy, inside your agent when introducing the category.
+    - Main line is Make it mean something.
+    - Preserve paper, ink, lime and coral; use darker coral only for large text on paper.
+    - Use one-color vector logos, clear space and the dedicated favicon for tiny reproduction.
+    - Explain the decision; preserve the user's context; disclose limitations.
+  touchpoints: [homepage, public playbook, repository README, skill icon, avatar, launch cover]
+  migration:
+    - Apply current website assets, README cover and skill icon metadata together.
+    - Keep identifier branded, existing repository URLs and installer behavior unchanged.
+    - Icon assets are now included in the canonical payload and release packages.
+    - Preserve former identity artifacts and project decisions through version history.
+    - Review locally before merging and deploying through the existing site workflow.
+  open_decisions: [Owner selection of the recommended mark and voice; public rollout; audience and competitive validation.]

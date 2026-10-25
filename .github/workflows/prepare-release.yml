@@ -1,0 +1,29 @@
+name: Prepare release artifacts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: npm ci
+      - run: npm test
+      - run: npm run validate
+      - run: npm run check:marketplace
+      - run: npm run build:release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: branded-release
+          path: dist/

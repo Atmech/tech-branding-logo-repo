@@ -1,0 +1,18 @@
+{
+  "source": "github:Atmech/tech-branding-logo-repo#6359f0a",
+  "results": [
+    {
+      "agent": "codex",
+      "installed": true,
+      "completePayload": true
+    },
+    {
+      "agent": "claude",
+      "installed": true,
+      "completePayload": true
+    },
+    {
+      "personalScopeDryRun": true
+    }
+  ]
+}

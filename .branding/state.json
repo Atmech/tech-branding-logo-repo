@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "skill": "branded",
+  "skillVersion": "1.2.0",
+  "scope": "brand-identity",
+  "mode": "brand-evolution",
+  "projectName": "branded self-identity",
+  "domains": [
+    "technology"
+  ],
+  "overlays": [],
+  "stage": "delivery",
+  "completedStages": [
+    "brief",
+    "foundation",
+    "exploration",
+    "refinement",
+    "applications",
+    "quality-control"
+  ],
+  "createdAt": "2026-10-25T13:02:48.893462+00:00",
+  "updatedAt": "2026-10-25T13:05:35.386593+00:00",
+  "activeDeliverables": [
+    "brand/identity/strategy.md",
+    "site/index.html",
+    "site/brand-guide.html",
+    "brand/identity/manifest.yaml"
+  ],
+  "ownerReview": "pending"
+}

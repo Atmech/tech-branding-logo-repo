@@ -1,0 +1,11 @@
+{
+  "claude": {
+    "marketplaceRegistered": true,
+    "pluginInstalled": true,
+    "skillInventoryConfirmed": true
+  },
+  "codex": {
+    "explicitCatalogDiscovered": true,
+    "installationNotAttempted": true
+  }
+}

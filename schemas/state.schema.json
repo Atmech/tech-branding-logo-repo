@@ -17,7 +17,10 @@
       "const": 1
     },
     "skill": {
-      "const": "tech-branding-logo"
+      "enum": [
+        "branded",
+        "tech-branding-logo"
+      ]
     },
     "skillVersion": {
       "type": "string"

@@ -1,8 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { version } from './config.js';
 
 export const BRANDING_DIR = '.branding';
-export const INSTALL_DIR = '.tech-branding-logo';
+export const INSTALL_DIR = '.branded';
 
 export function ensureDir(dir) { fs.mkdirSync(dir, { recursive: true }); }
 export function readJson(file) { return fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null; }
@@ -28,8 +29,8 @@ export function installManifestPath(cwd = process.cwd()) {
 export function defaultState(mode, projectName = '', scope = 'brand-identity') {
   return {
     schemaVersion: 1,
-    skill: 'tech-branding-logo',
-    skillVersion: '1.1.0',
+    skill: 'branded',
+    skillVersion: version,
     scope,
     mode,
     domains: [],

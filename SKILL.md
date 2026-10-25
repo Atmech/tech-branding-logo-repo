@@ -1,11 +1,11 @@
 ---
-name: tech-branding-logo
+name: branded
 description: Develop brand identities, names, logos, campaign art direction, and assets within existing brands. Use for technology, food and hospitality, real estate, and fashion/apparel briefs, including B2B buying contexts. Supports lasting identities, temporary campaigns, and brand applications with domain-specific guidance and production QC.
 ---
 
-# Branding orchestrator
+# branded
 
-Connect business truth, audience, positioning, psychology and creative decisions. Preserve the `tech-branding-logo` identifier for existing installations. Start with one agent selectively loading modules; modules are expertise references, not instructions to spawn agents.
+Connect business truth, audience, positioning, psychology and creative decisions. Use `branded` as the skill identifier. Existing projects may still record `tech-branding-logo`; preserve their state, approved decisions and progress when resuming. Start with one agent selectively loading modules; modules are expertise references, not instructions to spawn agents.
 
 ## Intake and routing
 
@@ -37,6 +37,10 @@ Load `references/specialist-contract.md` and only modules relevant to the brief:
 - `references/overlays/packaging.md`: packaging is an actual deliverable.
 
 For a premium bakery supplying hotels, food expertise guides appeal/provenance, hospitality guides service context, and B2B guides reliability and buyer confidence. Load packaging only when needed. Resolve conflicting advice against audience, objective and fixed constraints; do not blend unrelated aesthetics. Luxury and cultural context are brief-specific lenses within these modules; flag knowledge gaps instead of claiming specialist coverage.
+
+## Setup and host capabilities
+
+The workflow itself needs no Node runtime. To create project files without the optional CLI, read `templates/initialize-project.md` and `schemas/state.schema.json`. Keep project memory in the working project, never in this skill folder. If a host cannot create files, return copyable brief and handoff text and state that persistence was not performed. Strategy can run with text tools; editable assets, visual inspection, image generation and external research require the corresponding host tools. Report missing capabilities rather than claiming a production artifact was created.
 
 ## Project memory and continuity
 

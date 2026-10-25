@@ -1,0 +1,77 @@
+project:
+  name: branded
+  scope: brand-identity
+  mode: brand-evolution
+  date: '2026-10-25'
+foundation:
+  audience: [people creating brand identities, campaigns and brand applications with agents]
+  problem: The former technology-and-logo name describes only part of the workflow.
+  promise: A portable branding workflow from focused brief to usable brand assets.
+  proof: [canonical skill and selective domain references, portable project memory, editable asset workflow and QC]
+  role: A creative partner inside the user's agent.
+  personality: [structured, incisive, imaginative]
+  tensions: [editorial and technical, expressive and accountable]
+  anti_positioning: [one-click logo generator]
+  territories: [existing constructive blueprint system]
+naming:
+  status: recommended
+  candidates: [branded]
+  recommendation: Use the exact owner-selected lowercase name branded; no naming search or clearance is claimed.
+brief:
+  confirmed:
+    name: branded
+    requested_surfaces: [skill, repository homepage, main static site]
+    pull_request: Stack on PR 4, targeting codex/v1.2-install-release.
+  assumptions: [Retain existing mark geometry, palette and typography; retain repository URLs.]
+  unresolved: [Production visual review; live Pages configuration.]
+  approved_decisions: [The owner explicitly selected branded.]
+  rejected_directions: [Restarting naming or redesigning the established mark beyond the requested rename.]
+directions:
+  - id: retained-constructive-blueprint
+    concept_ids: [c01]
+    rationale: Apply the requested name while preserving the existing visual system; no new concept selection.
+    logo_assets: [site/assets/branded-mark.svg, site/assets/branded-mark-mono.svg, site/assets/branded-lockup.svg]
+    visual_dna:
+      colors: ["paper #f4f0e8", "ink #1a1b19", "lime #caff70", "coral #ff6a3d", "blue #5a7eff"]
+      type: [Georgia for editorial headlines, system sans serif for utility]
+      icons: [retained modular mark]
+      patterns: [retained worktable composition]
+      motion: [retained ticker]
+    tests: [SVG XML parsing; HTML asset references; rendering pending]
+qc:
+  scores: {}
+  blockers: [Desktop and mobile visual review unavailable in this session.]
+  open_risks: [Name availability not screened; live Pages URL not confirmed; host invocation remains manual.]
+  decision: hold
+  evidence: brand/branded-rename-qc.md
+  interpretation: Code and static checks passed; hold applies to production visual sign-off.
+delivery:
+  files:
+    - SKILL.md
+    - README.md
+    - agents/openai.yaml
+    - plugins/openai-interface.json
+    - bin/branded.js
+    - package.json
+    - site/index.html
+    - site/styles.css
+    - site/assets/branded-mark.svg
+    - site/assets/branded-mark-mono.svg
+    - site/assets/branded-lockup.svg
+    - docs/INSTALLATION.md
+    - docs/NATIVE_INSTALL.md
+    - docs/COMPATIBILITY.md
+    - brand/landing-page-brand-strategy.md
+    - brand/branded-rename-qc.md
+    - brand/branded-rename-manifest.yaml
+  usage_rules:
+    - Use branded in lowercase as the public name, skill identifier and CLI command.
+    - Preserve the existing mark geometry, clear space, palette and typography.
+    - Keep .branding project memory and approved decisions intact.
+  touchpoints: [repository README, static homepage, agent metadata, CLI, release archives]
+  migration:
+    - Follow docs/INSTALLATION.md to remove old installations with their original manager and install branded.
+    - New installs use branded directories and separate .branded records; old project-state identifiers remain valid.
+    - Merge PR 4 before the stacked rename PR; deploy the site through the existing main-branch workflow.
+    - Repository URLs remain unchanged.
+  open_decisions: [Complete visual sign-off and confirm Pages hosting before calling the site live.]

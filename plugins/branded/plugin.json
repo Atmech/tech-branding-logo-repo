@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "branded",
+  "version": "1.2.0",
+  "description": "Brand identities, campaigns and brand applications with domain-specific agent expertise.",
+  "author": {
+    "name": "Atmech"
+  },
+  "homepage": "https://github.com/Atmech/tech-branding-logo-repo",
+  "repository": "https://github.com/Atmech/tech-branding-logo-repo",
+  "license": "MIT",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "branded",
+        "shortDescription": "Brand identities, campaigns, and industry-specific assets",
+        "longDescription": "Develop names, logos, brand identities, campaigns, and assets within existing brands. Preserve project context and approved decisions across compatible agents.",
+        "developerName": "Atmech",
+        "category": "Productivity",
+        "websiteURL": "https://github.com/Atmech/tech-branding-logo-repo",
+        "defaultPrompt": [
+          "Use branded for this project. Read existing project state before asking questions."
+        ],
+        "brandColor": "#ff6a3d",
+        "composerIcon": "./assets/branded-icon.png",
+        "logo": "./assets/branded-icon.png"
+      }
+    }
+  }
+}
