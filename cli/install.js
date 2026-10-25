@@ -1,116 +1,137 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { AGENTS, detectAgents, parseAgentList } from './agents.js';
-import { ask, choose, confirm, intro, info, ok, section, warn } from './ui.js';
-import { ensureDir, installManifestPath, readJson, writeJson } from './state.js';
+import { context, skillName, version, sourceProvenance } from './config.js';
+import { choose, intro, info, ok, warn } from './ui.js';
+import { assertTarget, fileBytes, hash, safePath, slash } from './safety.js';
+import { loadManifest, migrateManifest, validateManifest } from './manifest.js';
+import { payload, payloadDigest } from './payload.js';
+import { pendingTransaction, recover, transact } from './transaction.js';
 
-const here = path.dirname(fileURLToPath(import.meta.url));
-const packageRoot = path.resolve(here, '..');
-const skillFiles = ['SKILL.md', 'references'];
-
-function copyRecursive(src, dest, createdFiles) {
-  const stat = fs.statSync(src);
-  if (stat.isDirectory()) {
-    ensureDir(dest);
-    for (const entry of fs.readdirSync(src)) copyRecursive(path.join(src, entry), path.join(dest, entry), createdFiles);
-    return;
-  }
-  ensureDir(path.dirname(dest));
-  fs.copyFileSync(src, dest);
-  createdFiles.push(dest);
+function existing(ctx, files) {
+  const old=loadManifest(ctx);
+  if(old?.schemaVersion===1) warn('Migrating legacy tracking conservatively. Unknown or modified legacy files will be preserved.');
+  return migrateManifest(old,files);
 }
-
-function relative(cwd, p) { return path.relative(cwd, p) || '.'; }
-
-export async function onboarding({ cwd = process.cwd(), agentArg = '', force = false, dryRun = false } = {}) {
-  intro('Onboarding — install once, use from your agent');
-  const detected = detectAgents(cwd);
-  let targets = parseAgentList(agentArg);
-
-  if (!targets.length && detected.length) {
-    section('Detected');
-    detected.forEach((key) => ok(AGENTS[key].label));
-    info('I’ll install into the detected environments. Use --agent=... to override.');
-    targets = detected;
+function customTarget(ctx,value) {
+  const relative=slash(path.relative(ctx.root,path.resolve(ctx.workspace,value)));
+  assertTarget(relative); safePath(ctx.root,relative); return relative;
+}
+function destination(ctx, agent, requested) {
+  const adapter=AGENTS[agent];
+  const native=ctx.scope==='user'?adapter.userDir:adapter.dir;
+  if(!native) throw new Error(`${adapter.label} has no personal discovery path. Use --target inside the installation root.`);
+  const shared=ctx.scope==='user'?adapter.sharedUser:adapter.sharedProject;
+  if(shared && !fileBytes(ctx.root,`${native}/SKILL.md`) && (requested.includes('codex') || fileBytes(ctx.root,`${shared}/SKILL.md`))) return shared;
+  return native;
+}
+export async function onboarding(options = {}) {
+  intro(options.update ? 'Update saved installation targets' : 'Install once, use from your agent');
+  let installScope=options.installScope;
+  if(!installScope && process.stdin.isTTY && process.stdout.isTTY && !options.update) installScope=await choose('Where should the skill be available?', [{value:'project',label:'This project'},{value:'user',label:'All my projects on this computer'}]);
+  const ctx=context({...options,installScope:installScope||'project'});
+  const files=payload();
+  if(pendingTransaction(ctx)) throw new Error('Installation is locked or interrupted. Run recover with the same project and installation scope.');
+  const initial=existing(ctx,files);
+  let agents=parseAgentList(options.agentArg);
+  if(options.target && agents.length) throw new Error('Choose --target or --agent, not both.');
+  if(options.update && (agents.length || options.target)) throw new Error('Update uses saved targets. Use install to add an agent.');
+  if(options.update && !initial?.installs.length) throw new Error('No saved installations to update.');
+  if(!options.update && !agents.length && !options.target) {
+    if(!process.stdin.isTTY || !process.stdout.isTTY) throw new Error('Noninteractive installation requires --agent or --target.');
+    const detected=detectAgents(ctx.workspace);
+    if(detected.length) info(`Suggested: ${detected.join(', ')}. Choose the host you want to use.`);
+    agents=[await choose('Install for which agent?',Object.entries(AGENTS).map(([value,a])=>({value,label:a.label})))];
   }
-
-  if (!targets.length) {
-    const selected = await choose('I could not confidently detect an agent. Where should I install?', [
-      ...Object.entries(AGENTS).map(([value, agent]) => ({ value, label: agent.label })),
-    ]);
-    targets = [selected];
-  }
-
-  const existingManifest = readJson(installManifestPath(cwd));
-  if (existingManifest && !force) {
-    warn('This project already has a Tech Branding & Logo install manifest.');
-    if (!(await confirm('Update the existing installation?', true))) return existingManifest;
-    force = true;
-  }
-
-  section(dryRun ? 'Plan' : 'Installing');
-  const installs = [];
-  for (const key of targets) {
-    const target = path.join(cwd, AGENTS[key].dir);
-    const existedBefore = fs.existsSync(target);
-    if (existedBefore && !force) {
-      warn(`${AGENTS[key].label}: ${relative(cwd, target)} already exists; skipped (use --force to update known skill files).`);
-      continue;
+  let desired=options.update ? initial.installs.map(i=>({agent:i.agent,target:i.target})) : options.target ? [{agent:'custom',target:customTarget(ctx,options.target)}] : agents.map(agent=>({agent,target:destination(ctx,agent,agents)}));
+  let result, transactionTargets=[];
+  function plan() {
+    const old=existing(ctx,files);
+    if(options.update) {
+      if(!old?.installs.length) throw new Error('Installation records changed. Run install first.');
+      desired=old.installs.map(i=>({agent:i.agent,target:i.target}));
     }
-
-    info(`${AGENTS[key].label} → ${relative(cwd, target)}`);
-    if (dryRun) continue;
-
-    const createdFiles = [];
-    for (const entry of skillFiles) copyRecursive(path.join(packageRoot, entry), path.join(target, entry), createdFiles);
-    installs.push({ agent: key, target: relative(cwd, target), createdDirectory: !existedBefore, files: createdFiles.map((f) => relative(cwd, f)) });
-    ok(`${AGENTS[key].label} ready`);
+    transactionTargets=[...new Set([...(old?.installs||[]).map(i=>i.target),...desired.map(i=>i.target)])];
+    const installs=(old?.installs||[]).map(i=>({...i,files:i.files.map(f=>({...f}))}));
+    const operations=[];
+    for(const desiredInstall of desired) {
+      const {agent,target}=desiredInstall;
+      assertTarget(target); safePath(ctx.root,target);
+      info(`${agent} → ${path.join(ctx.root,target)} (${ctx.scope})`);
+      const previous=installs.find(i=>i.target===target);
+      const known=new Map((previous?.files||[]).map(f=>[f.path,f]));
+      const records=[];
+      for(const [name,bytes] of files) {
+        const rel=`${target}/${name}`, current=fileBytes(ctx.root,rel), tracked=known.get(rel), digest=hash(bytes);
+        if(current && !tracked && !options.adopt) throw new Error(`Untracked file: ${rel}. Use --adopt only to take ownership of an identical payload.`);
+        if(current && !tracked && hash(current)!==digest) throw new Error(`Cannot adopt modified file: ${rel}`);
+        if(current && tracked && hash(current)!==tracked.hash) throw new Error(`Modified file preserved: ${rel}. Move your edit aside or merge it before updating.`);
+        if(!current || hash(current)!==digest) operations.push({path:rel,bytes});
+        records.push({path:rel,hash:digest,owned:true});
+      }
+      for(const record of known.values()) {
+        if(records.some(r=>r.path===record.path)) continue;
+        const current=fileBytes(ctx.root,record.path);
+        if(current && hash(current)===record.hash) operations.push({path:record.path,bytes:null});
+        else if(current) {warn(`Preserving edited obsolete file: ${record.path}`); records.push(record);}
+      }
+      const directories=new Set(previous?.directories || (previous?.createdDirectory ? [target] : []));
+      for(const [name] of files) {
+        let dir=path.posix.dirname(`${target}/${name}`);
+        while(dir===target || dir.startsWith(`${target}/`)) {
+          if(!fs.existsSync(safePath(ctx.root,dir))) directories.add(dir);
+          dir=path.posix.dirname(dir);
+        }
+      }
+      const entry={directories:[...directories],agent:previous?.agent||agent,agents:[...new Set([...(previous?.agents||[previous?.agent||agent]),agent])],target,version,payloadDigest:payloadDigest(files),createdDirectory:previous?.createdDirectory??!fs.existsSync(safePath(ctx.root,target)),files:records};
+      if(previous) installs[installs.indexOf(previous)]=entry; else installs.push(entry);
+    }
+    result={schemaVersion:2,package:skillName,version,scope:ctx.scope,installedAt:old?.installedAt||new Date().toISOString(),updatedAt:new Date().toISOString(),sourceRevision:sourceProvenance().revision,sourceDirty:sourceProvenance().dirty,payloadDigest:payloadDigest(files),installs};
+    validateManifest(result,ctx);
+    operations.push({path:ctx.record,bytes:Buffer.from(`${JSON.stringify(result,null,2)}\n`)});
+    return [...new Map(operations.map(op=>[op.path,op])).values()];
   }
-
-  if (dryRun) {
-    info('No files changed.');
-    return { dryRun: true, targets };
-  }
-
-  const manifest = {
-    schemaVersion: 1,
-    package: 'tech-branding-logo',
-    version: '1.1.0',
-    installedAt: new Date().toISOString(),
-    cwd,
-    installs,
-  };
-  writeJson(installManifestPath(cwd), manifest);
-
-  console.log('\nReady. Next, create a project brief when you actually want to brand something:');
-  console.log('  npx tech-branding-logo brief');
-  console.log('\nOr open your agent and say:');
-  console.log('  "Use tech-branding-logo for this product."');
-  return manifest;
+  if(options.dryRun) {const ops=plan(); info(`Preview: ${ops.length} file changes; nothing written.`); return {dryRun:true,targets:desired};}
+  transact(ctx,()=>transactionTargets,plan,options.transactionOptions);
+  ok('Skill files installed. Host invocation still needs verification.');
+  for(const agent of agents) info(AGENTS[agent].invoke);
+  info('In your project, ask your agent to use tech-branding-logo. Initialize project memory with templates/initialize-project.md or the optional brief command.');
+  return result;
 }
-
-export async function uninstall({ cwd = process.cwd(), dryRun = false } = {}) {
-  intro('Uninstall');
-  const file = installManifestPath(cwd);
-  const manifest = readJson(file);
-  if (!manifest) throw new Error('No install manifest found in this project. Nothing was removed.');
-
-  for (const install of manifest.installs || []) {
-    const target = path.join(cwd, install.target);
-    if (install.createdDirectory) {
-      info(`${dryRun ? 'Would remove' : 'Removing'} ${install.target}`);
-      if (!dryRun && fs.existsSync(target)) fs.rmSync(target, { recursive: true, force: true });
-    } else {
-      for (const rel of install.files || []) {
-        const p = path.join(cwd, rel);
-        info(`${dryRun ? 'Would remove' : 'Removing'} ${rel}`);
-        if (!dryRun && fs.existsSync(p)) fs.rmSync(p, { force: true });
+export async function uninstall(options = {}) {
+  intro('Uninstall — preserve edited and untracked files');
+  const ctx=context(options), files=payload();
+  if(pendingTransaction(ctx)) throw new Error('Installation is locked or interrupted. Run recover first.');
+  const initial=existing(ctx,files);
+  if(!initial?.installs.length) throw new Error('No saved installations to remove.');
+  let preserved=[], currentManifest=initial;
+  function plan() {
+    const manifest=existing(ctx,files);
+    if(!manifest?.installs.length) throw new Error('Installation records changed. Nothing to remove.');
+    currentManifest=manifest; const operations=[]; preserved=[];
+    for(const install of manifest.installs) for(const record of install.files) {
+      const bytes=fileBytes(ctx.root,record.path);
+      if(bytes && hash(bytes)===record.hash) operations.push({path:record.path,bytes:null});
+      else if(bytes) preserved.push(record.path);
+    }
+    operations.push({path:ctx.record,bytes:null});
+    return [...new Map(operations.map(op=>[op.path,op])).values()];
+  }
+  if(options.dryRun) {const ops=plan(); info(`Would remove ${ops.length-1} unchanged tracked files. No files changed.`);}
+  else {
+    transact(ctx,()=>currentManifest.installs.map(i=>i.target),plan,options.transactionOptions);
+    for(const install of currentManifest.installs) {
+      const directories=install.directories || (install.createdDirectory ? [install.target] : []);
+      for(const rel of [...directories].sort((a,b)=>b.length-a.length)) {
+        const dir=safePath(ctx.root,rel);
+        if(fs.existsSync(dir) && fs.readdirSync(dir).length===0) fs.rmdirSync(dir);
       }
     }
+    ok('Removed unchanged tracked files. Branding project memory was preserved.');
   }
-  if (!dryRun) {
-    fs.rmSync(path.dirname(file), { recursive: true, force: true });
-    ok('Removed only files tracked by the install manifest.');
-  }
+  for(const rel of preserved) warn(`Preserved modified file: ${rel}`);
+  return {preserved};
+}
+export function recoverInstallation(options={}) {
+  const ctx=context(options); recover(ctx); ok('Interrupted changes rolled back. Re-run the intended operation.');
 }

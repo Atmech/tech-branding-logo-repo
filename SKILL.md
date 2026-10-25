@@ -38,6 +38,10 @@ Load `references/specialist-contract.md` and only modules relevant to the brief:
 
 For a premium bakery supplying hotels, food expertise guides appeal/provenance, hospitality guides service context, and B2B guides reliability and buyer confidence. Load packaging only when needed. Resolve conflicting advice against audience, objective and fixed constraints; do not blend unrelated aesthetics. Luxury and cultural context are brief-specific lenses within these modules; flag knowledge gaps instead of claiming specialist coverage.
 
+## Setup and host capabilities
+
+The workflow itself needs no Node runtime. To create project files without the optional CLI, read `templates/initialize-project.md` and `schemas/state.schema.json`. Keep project memory in the working project, never in this skill folder. If a host cannot create files, return copyable brief and handoff text and state that persistence was not performed. Strategy can run with text tools; editable assets, visual inspection, image generation and external research require the corresponding host tools. Report missing capabilities rather than claiming a production artifact was created.
+
 ## Project memory and continuity
 
 - Keep `.branding/context.md` as the compact shared brief and `.branding/decisions.md` as the decision/rejection log. Preserve unknown state fields when updating stages.

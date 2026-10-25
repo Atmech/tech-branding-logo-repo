@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0
+
+- Explicit project and personal installation scopes, project-root resolution, custom destinations and Grok coding support.
+- Strict options, meaningful doctor exit codes, saved-target updates, hash-based ownership, conservative legacy migration and non-destructive uninstall.
+- Exclusive operation locks, rollback on caught write errors and explicit recovery after process interruption.
+- Complete portable payload including schemas, initialization template, OpenAI metadata and license.
+- Deterministic portable/plugin ZIPs, npm tarball, checksums and source provenance; no automated public publishing.
+- Native/manual installation guides, capability and host-verification matrix, expanded lifecycle and built-package tests, cross-platform CI.
+
 ## 1.1.0
 
 - Added identity, campaign and application routing with selective industry modules.

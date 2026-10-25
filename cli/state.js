@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { version } from './config.js';
 
 export const BRANDING_DIR = '.branding';
 export const INSTALL_DIR = '.tech-branding-logo';
@@ -29,7 +30,7 @@ export function defaultState(mode, projectName = '', scope = 'brand-identity') {
   return {
     schemaVersion: 1,
     skill: 'tech-branding-logo',
-    skillVersion: '1.1.0',
+    skillVersion: version,
     scope,
     mode,
     domains: [],
