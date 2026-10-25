@@ -1,3 +1,4 @@
+# Historical landing-page manifest; name decisions superseded by branded-rename-manifest.yaml on 2026-10-25.
 project:
   name: Tech Branding & Logo landing page
   mode: brand-evolution
@@ -47,7 +48,7 @@ directions:
   - id: d01
     concept_ids: [c01]
     rationale: The constructive-blueprint direction best matches a system that is technical without being cold and creative without relying on trend aesthetics.
-    logo_assets: [site/assets/tbl-mark.svg]
+    logo_assets: [site/assets/branded-mark.svg]
     visual_dna:
       colors: [paper '#f4f0e8', ink '#1a1b19', signal lime '#caff70', signal coral '#ff6a3d', system blue '#5a7eff']
       type: [Georgia or editorial serif for propositions, system sans serif for utility]
@@ -99,7 +100,7 @@ qc:
     - Tracekit is a fictional illustrative example; replace it with a complete committed sample run before presenting it as a case study or real output.
   decision: pass
 delivery:
-  files: [site/index.html, site/styles.css, site/script.js, site/assets/tbl-mark.svg, site/assets/tbl-mark-mono.svg, site/assets/tbl-lockup.svg, brand/landing-page-brand-strategy.md, brand/concept-catalog.md, brand/landing-page-brand-manifest.yaml]
+  files: [site/index.html, site/styles.css, site/script.js, site/assets/branded-mark.svg, site/assets/branded-mark-mono.svg, site/assets/branded-lockup.svg, brand/landing-page-brand-strategy.md, brand/concept-catalog.md, brand/landing-page-brand-manifest.yaml]
   usage_rules:
     - Use the full Tech Branding & Logo name in first reference and external SEO contexts.
     - Use TBL as a secondary visual signature only.

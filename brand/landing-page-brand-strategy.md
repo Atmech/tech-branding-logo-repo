@@ -1,6 +1,14 @@
-# Tech Branding & Logo — landing-page strategy
+# branded — landing-page strategy
 
-## Rebrand audit
+## Current decision — 2026-10-25
+
+The owner has selected **branded** as the product and skill name. This supersedes the original name-retention recommendation below. Use the lowercase name in the README, website, host metadata, CLI and release packages. Keep the existing repository URL and `.branding/` project memory. Retain the modular mark, paper/ink/lime/coral palette and editorial typography; the editable lockup now reads branded. No fresh naming exercise or claim of name clearance is part of this change.
+
+New installs use `branded` directories and `.branded/` installer records. Existing installations follow the explicit transition in `docs/INSTALLATION.md`; existing project-state identifiers remain valid. See `brand/branded-rename-manifest.yaml` for the current delivery and QC record.
+
+The following audit records the original landing-page direction and is retained as history.
+
+## Original rebrand audit
 
 | Existing asset | Decision | Evidence |
 | --- | --- | --- |

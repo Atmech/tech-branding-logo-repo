@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Rename the skill, CLI, package, host metadata, installation directories and release archives to `branded`.
+- Update the repository homepage, static site and editable logo lockups; preserve GitHub repository URLs.
+- Keep legacy project-state identifiers valid and document an explicit, non-destructive transition from previous installations.
+
 ## 1.2.0
 
 - Explicit project and personal installation scopes, project-root resolution, custom destinations and Grok coding support.

@@ -1,7 +1,7 @@
 interface:
-  display_name: "Tech Branding & Logo"
+  display_name: "branded"
   short_description: "Brand identities, campaigns, and industry-specific assets"
-  default_prompt: "Use $tech-branding-logo to develop this brand or campaign, first reading project state and inferring scope and relevant industry expertise; ask only consequential unanswered questions."
+  default_prompt: "Use $branded to develop this brand or campaign, first reading project state and inferring scope and relevant industry expertise; ask only consequential unanswered questions."
 
 policy:
   allow_implicit_invocation: true

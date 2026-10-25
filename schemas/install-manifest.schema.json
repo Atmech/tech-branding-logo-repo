@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Tech Branding installation manifest v2",
+  "title": "branded installation manifest v2",
   "type": "object",
   "required": [
     "schemaVersion",
@@ -18,7 +18,7 @@
       "const": 2
     },
     "package": {
-      "const": "tech-branding-logo"
+      "const": "branded"
     },
     "version": {
       "type": "string",

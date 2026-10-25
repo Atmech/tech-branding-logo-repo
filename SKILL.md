@@ -1,11 +1,11 @@
 ---
-name: tech-branding-logo
+name: branded
 description: Develop brand identities, names, logos, campaign art direction, and assets within existing brands. Use for technology, food and hospitality, real estate, and fashion/apparel briefs, including B2B buying contexts. Supports lasting identities, temporary campaigns, and brand applications with domain-specific guidance and production QC.
 ---
 
-# Branding orchestrator
+# branded
 
-Connect business truth, audience, positioning, psychology and creative decisions. Preserve the `tech-branding-logo` identifier for existing installations. Start with one agent selectively loading modules; modules are expertise references, not instructions to spawn agents.
+Connect business truth, audience, positioning, psychology and creative decisions. Use `branded` as the skill identifier. Existing projects may still record `tech-branding-logo`; preserve their state, approved decisions and progress when resuming. Start with one agent selectively loading modules; modules are expertise references, not instructions to spawn agents.
 
 ## Intake and routing
 

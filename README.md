@@ -1,6 +1,8 @@
-# Tech Branding & Logo
+# branded
 
-A portable branding workflow for lasting identities, temporary campaigns, and assets within established brands. Supports technology, food/hospitality, real estate and fashion/apparel, with B2B and packaging guidance. MIT licensed; stable identifier: `tech-branding-logo`.
+A portable branding workflow for lasting identities, temporary campaigns, and assets within established brands. Supports technology, food/hospitality, real estate and fashion/apparel, with B2B and packaging guidance. MIT licensed. Skill and CLI: `branded`.
+
+[Preview the branded homepage source](site/index.html) · [Read the workflow](SKILL.md)
 
 ## Install the skill
 
@@ -13,9 +15,9 @@ Release packages are prepared by the build below. Public release availability an
 The dependency-free CLI needs Node 18+. From a reviewed checkout, run its executable from your project or provide `--project` explicitly:
 
 ```sh
-node /path/to/tech-branding-logo-repo/bin/tech-branding-logo.js install --agent codex
-node /path/to/tech-branding-logo-repo/bin/tech-branding-logo.js install --agent claude --install-scope user
-node /path/to/tech-branding-logo-repo/bin/tech-branding-logo.js install --agent grok --project /path/to/project
+node /path/to/tech-branding-logo-repo/bin/branded.js install --agent codex
+node /path/to/tech-branding-logo-repo/bin/branded.js install --agent claude --install-scope user
+node /path/to/tech-branding-logo-repo/bin/branded.js install --agent grok --project /path/to/project
 ```
 
 Choose **This project** for a shared or project-specific workflow, or **All my projects on this computer** for a personal installation. The CLI defaults to interactive selection; unattended installation requires an explicit host or target. `--global` is a working alias for personal scope. Installing a CLI executable globally is different from installing the skill personally.
@@ -23,22 +25,26 @@ Choose **This project** for a shared or project-specific workflow, or **All my p
 The installer resolves a Git root when present; non-Git folders work too. `--project` chooses an exact root. Preview with `--dry-run`. It suggests detected hosts rather than installing into every tool it finds. Native, manually copied and CLI-managed installations have separate ownership; do not mix their update/removal controls without deliberate adoption.
 
 ```text
-tech-branding-logo install      Install for a chosen host and scope
-tech-branding-logo onboarding   Compatibility alias for install
-tech-branding-logo doctor       Verify files; then check in your agent
-tech-branding-logo update       Refresh saved targets, preserving edits
-tech-branding-logo uninstall    Remove only unchanged tracked files
-tech-branding-logo recover      Roll back an interrupted operation
-tech-branding-logo brief        Create project memory (optional)
-tech-branding-logo resume       Show current project progress
-tech-branding-logo export       Export a portable brand kit
+branded install      Install for a chosen host and scope
+branded onboarding   Compatibility alias for install
+branded doctor       Verify files; then check in your agent
+branded update       Refresh saved targets, preserving edits
+branded uninstall    Remove only unchanged tracked files
+branded recover      Roll back an interrupted operation
+branded brief        Create project memory (optional)
+branded resume       Show current project progress
+branded export       Export a portable brand kit
 ```
 
 See [CLI installation and recovery](docs/INSTALLATION.md) for flags, records, custom paths, adoption, legacy migration and personal records. Unknown flags fail. `--force` never overwrites user edits. `.branding/` is preserved during uninstall.
 
+## Moving from Tech Branding & Logo
+
+The skill, CLI, package and new installation directories are now named `branded`. The GitHub repository URL stays the same. Existing `.branding/` project memory remains valid and is resumed without rewriting it. For an existing installation, follow the [rename guide](docs/INSTALLATION.md#moving-from-tech-branding--logo) to avoid duplicate skills.
+
 ## Use the workflow
 
-Open your agent and ask it to use `tech-branding-logo` for the product, campaign or asset you need. It reads existing context, infers the work scope and asks only consequential unanswered questions. You can start in one compatible agent and continue in another using the same project files.
+Open your agent and ask it to use `branded` for the product, campaign or asset you need. It reads existing context, infers the work scope and asks only consequential unanswered questions. You can start in one compatible agent and continue in another using the same project files.
 
 The agent can initialize memory from [templates/initialize-project.md](templates/initialize-project.md), without running the CLI. Alternatively run `brief` from the project. Both routes keep memory in the working project:
 

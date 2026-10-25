@@ -1,10 +1,10 @@
 {
-  "name": "tech-branding-logo",
+  "name": "branded",
   "version": "1.2.0",
   "description": "Brand identities, campaigns and brand applications with domain-specific agent expertise.",
   "type": "module",
   "bin": {
-    "tech-branding-logo": "./bin/tech-branding-logo.js"
+    "branded": "./bin/branded.js"
   },
   "files": [
     "bin/",

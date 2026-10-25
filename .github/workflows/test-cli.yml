@@ -25,7 +25,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run validate
-      - run: node ./bin/tech-branding-logo.js --help
+      - run: node ./bin/branded.js --help
       - run: npm run build:release
       - uses: actions/upload-artifact@v4
         with:

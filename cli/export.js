@@ -17,7 +17,7 @@ function copyDir(src, dest) {
 export function exportBrand({ cwd = process.cwd(), out = 'brand-kit' } = {}) {
   intro('Export');
   const paths = statePaths(cwd);
-  if (!fs.existsSync(paths.state)) throw new Error('No brand project found. Run `tech-branding-logo brief` first.');
+  if (!fs.existsSync(paths.state)) throw new Error('No brand project found. Run `branded brief` first.');
   const dest = path.resolve(cwd, out);
   ensureDir(dest);
 
@@ -28,7 +28,7 @@ export function exportBrand({ cwd = process.cwd(), out = 'brand-kit' } = {}) {
   copyDir(paths.outputs, path.join(dest, 'outputs'));
   copyDir(paths.inputs, path.join(dest, 'inputs'));
 
-  fs.writeFileSync(path.join(dest, 'README.md'), '# Brand kit\n\nExported by Tech Branding & Logo.\n\n- `context.md` — original project context\n- `decisions.md` — decision trail and rejected directions\n- `state.json` — machine-readable project status\n- `outputs/` — generated brand artifacts\n- `inputs/` — source assets used during the project\n');
+  fs.writeFileSync(path.join(dest, 'README.md'), '# Brand kit\n\nExported by branded.\n\n- `context.md` — original project context\n- `decisions.md` — decision trail and rejected directions\n- `state.json` — machine-readable project status\n- `outputs/` — generated brand artifacts\n- `inputs/` — source assets used during the project\n');
   ok(`Exported to ${path.relative(cwd, dest) || '.'}`);
   info('This export is portable; the working .branding/ directory remains untouched.');
   return dest;

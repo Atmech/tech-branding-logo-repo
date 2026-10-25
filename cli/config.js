@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process';
 
 export const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const metadata = JSON.parse(fs.readFileSync(path.join(packageRoot, 'package.json'), 'utf8'));
-export const skillName = 'tech-branding-logo';
+export const skillName = 'branded';
 export const version = metadata.version;
 
 export function projectRoot(cwd = process.cwd(), explicit) {
@@ -29,7 +29,7 @@ export function context({ cwd = process.cwd(), project, installScope = 'project'
   const workspace = projectRoot(cwd, project);
   const root = installScope === 'user' ? fs.realpathSync(home) : workspace;
   const data = platform === 'darwin' ? 'Library/Application Support' : platform === 'win32' ? 'AppData/Local' : '.local/share';
-  const record = installScope === 'user' ? path.posix.join(data, skillName, 'install.json') : '.tech-branding-logo/install.json';
+  const record = installScope === 'user' ? path.posix.join(data, skillName, 'install.json') : '.branded/install.json';
   return { root, workspace, scope: installScope, record, manifestFile: path.join(root, record) };
 }
 
@@ -41,5 +41,5 @@ export function sourceProvenance() {
     const status=spawnSync('git',['status','--porcelain'],{cwd:packageRoot,encoding:'utf8'});
     if(result.status===0) return {revision:result.stdout.trim(),dirty:status.status!==0 || Boolean(status.stdout.trim())};
   }
-  return {revision:process.env.TBL_SOURCE_REVISION||'unrecorded-local-build',dirty:true};
+  return {revision:process.env.BRANDED_SOURCE_REVISION||process.env.TBL_SOURCE_REVISION||'unrecorded-local-build',dirty:true};
 }

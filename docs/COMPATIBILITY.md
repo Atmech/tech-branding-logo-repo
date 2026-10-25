@@ -4,13 +4,13 @@ Reviewed 25 October 2026. “Documented path” means the host documentation des
 
 | Host | Project directory | Personal directory (under home) | How to check |
 | --- | --- | --- | --- |
-| Codex | `.agents/skills/tech-branding-logo` | `.agents/skills/tech-branding-logo` | `/skills`, then mention `$tech-branding-logo` |
-| Claude Code | `.claude/skills/tech-branding-logo` | `.claude/skills/tech-branding-logo` | `/tech-branding-logo`; plugin invocation may be namespaced |
-| Grok coding agent | `.grok/skills/tech-branding-logo` | `.grok/skills/tech-branding-logo` | `/tech-branding-logo` |
-| Cursor | `.cursor/skills/tech-branding-logo` | `.cursor/skills/tech-branding-logo` | Find it in the `/` menu |
-| Windsurf / Cascade (legacy path) | `.windsurf/skills/tech-branding-logo` | `.codeium/windsurf/skills/tech-branding-logo` | Check the host skills selector |
-| Gemini CLI | `.gemini/skills/tech-branding-logo` | `.gemini/skills/tech-branding-logo` | `/skills list`, then `/skills reload` if needed |
-| Generic | `skills/tech-branding-logo` | Use an explicit custom target | Load SKILL.md explicitly; discovery is unverified |
+| Codex | `.agents/skills/branded` | `.agents/skills/branded` | `/skills`, then mention `$branded` |
+| Claude Code | `.claude/skills/branded` | `.claude/skills/branded` | `/branded`; plugin invocation may be namespaced |
+| Grok coding agent | `.grok/skills/branded` | `.grok/skills/branded` | `/branded` |
+| Cursor | `.cursor/skills/branded` | `.cursor/skills/branded` | Find it in the `/` menu |
+| Windsurf / Cascade (legacy path) | `.windsurf/skills/branded` | `.codeium/windsurf/skills/branded` | Check the host skills selector |
+| Gemini CLI | `.gemini/skills/branded` | `.gemini/skills/branded` | `/skills list`, then `/skills reload` if needed |
+| Generic | `skills/branded` | Use an explicit custom target | Load SKILL.md explicitly; discovery is unverified |
 
 Cascade documentation now redirects to Devin Desktop; it still documents the legacy Windsurf paths above. Its preferred project path is `.devin/skills`, and it documents `~/.config/devin/skills` as an alternative personal path. Use `--target` for those paths.
 
@@ -20,7 +20,7 @@ Official sources: [Codex](https://learn.chatgpt.com/docs/build-skills), [Claude 
 
 ## Grok Bot is a separate installation surface
 
-A coding-agent directory is not a Bot library installation. Use the Bot's supported skill-creation and enabling controls. Give the Bot the portable bundle's instructions and references through its supported file/context controls, ask it to save the workflow as “Tech Branding & Logo,” then enable that private skill for the intended Bot. Inspect the saved result to confirm the reference material is available; saving only a summary is not equivalent to installing the complete workflow. If package import is unsupported, do not claim ZIP installation succeeded.
+A coding-agent directory is not a Bot library installation. Use the Bot's supported skill-creation and enabling controls. Give the Bot the portable bundle's instructions and references through its supported file/context controls, ask it to save the workflow as “branded,” then enable that private skill for the intended Bot. Inspect the saved result to confirm the reference material is available; saving only a summary is not equivalent to installing the complete workflow. If package import is unsupported, do not claim ZIP installation succeeded.
 
 See [Grok Bot skills](https://docs.x.ai/grok-bot/skills-routines-and-automations). This project does not automate account controls, schedules or Bot creation.
 

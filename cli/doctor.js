@@ -27,7 +27,7 @@ export function doctor(options={}) {
         if(!bytes || hash(bytes)!==record.hash) {warn(`Tracked file differs: ${record.path}`); healthy=false;}
       }
       const skill=fileBytes(ctx.root,`${install.target}/SKILL.md`)?.toString()||'';
-      if(!skill.startsWith('---\n') || !skill.includes('\nname: tech-branding-logo\n') || !/\ndescription: \S/.test(skill)) {warn('Invalid installed skill metadata.'); healthy=false;}
+      if(!skill.startsWith('---\n') || !skill.includes('\nname: branded\n') || !/\ndescription: \S/.test(skill)) {warn('Invalid installed skill metadata.'); healthy=false;}
       info(`${install.agent}: ${path.join(ctx.root,install.target)}`);
       info(AGENTS[install.agent]?.invoke||'Explicitly load this skill in your agent.');
     }

@@ -19,7 +19,7 @@ export function buildRelease(out=path.join(packageRoot,'dist'), {pack=true}={}) 
   plugin.set('.codex-plugin/plugin.json',json({...identity,skills:'./skills/',interface:openai}));
   plugin.set('.claude-plugin/plugin.json',json({...identity,skills:'./skills/'}));
   plugin.set('LICENSE',files.get('LICENSE'));
-  plugin.set('INSTALL.md',Buffer.from('# Install Tech Branding & Logo\n\nSee docs/NATIVE_INSTALL.md for native installation and docs/COMPATIBILITY.md for host checks.\n'));
+  plugin.set('INSTALL.md',Buffer.from('# Install branded\n\nSee docs/NATIVE_INSTALL.md for native installation and docs/COMPATIBILITY.md for host checks.\n'));
   for(const name of fs.readdirSync(path.join(packageRoot,'docs')).sort()) plugin.set(`docs/${name}`,fs.readFileSync(path.join(packageRoot,'docs',name)));
   plugin.set('PLUGIN_PUBLISHING.md',fs.readFileSync(path.join(packageRoot,'PLUGIN_PUBLISHING.md')));
   fs.writeFileSync(path.join(out,`${skillName}-${version}-skill.zip`),zip(plain));
@@ -27,7 +27,7 @@ export function buildRelease(out=path.join(packageRoot,'dist'), {pack=true}={}) 
   const source=sourceProvenance();
   if(pack) {
     if(!process.env.npm_execpath) throw new Error('Run npm run build:release so npm can package the CLI.');
-    const staging=fs.mkdtempSync(path.join(os.tmpdir(),'tbl-package-'));
+    const staging=fs.mkdtempSync(path.join(os.tmpdir(),'branded-package-'));
     try {
       for(const entry of ['package.json','package-lock.json',...metadata.files.filter(p=>p!=='build-source.json')]) {
         const src=path.join(packageRoot,entry);

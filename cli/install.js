@@ -95,7 +95,7 @@ export async function onboarding(options = {}) {
   transact(ctx,()=>transactionTargets,plan,options.transactionOptions);
   ok('Skill files installed. Host invocation still needs verification.');
   for(const agent of agents) info(AGENTS[agent].invoke);
-  info('In your project, ask your agent to use tech-branding-logo. Initialize project memory with templates/initialize-project.md or the optional brief command.');
+  info('In your project, ask your agent to use branded. Initialize project memory with templates/initialize-project.md or the optional brief command.');
   return result;
 }
 export async function uninstall(options = {}) {

@@ -1,4 +1,4 @@
-# Package, test and publish Tech Branding & Logo
+# Package, test and publish branded
 
 Updated 25 October 2026 against current official documentation. The workflow remains skills-only: there is no required MCP server, OAuth flow or hosted backend.
 
@@ -11,9 +11,9 @@ npm run validate
 npm run build:release
 ```
 
-The build creates `dist/tech-branding-logo-<version>-skill.zip`, `dist/tech-branding-logo-<version>-plugin.zip`, the npm CLI tarball, `release.json` and `SHA256SUMS`. All packages use the version in package.json and the same canonical workflow. Release metadata includes the source revision and payload digest. Build from a reviewed tag and record any working-tree changes before publishing; a local build is not a published release.
+The build creates `dist/branded-<version>-skill.zip`, `dist/branded-<version>-plugin.zip`, the npm CLI tarball, `release.json` and `SHA256SUMS`. All packages use the version in package.json and the same canonical workflow. Release metadata includes the source revision and payload digest. Build from a reviewed tag and record any working-tree changes before publishing; a local build is not a published release.
 
-The plugin ZIP places portable `plugin.json`, Codex and Claude compatibility manifests beside `skills/tech-branding-logo/`. OpenAI presentation metadata is maintained in plugins/openai-interface.json. The package contains no hooks or MCP server. [OpenAI package structure](https://developers.openai.com/plugins/build/plugins), [Claude plugin reference](https://code.claude.com/docs/en/plugins-reference).
+The plugin ZIP places portable `plugin.json`, Codex and Claude compatibility manifests beside `skills/branded/`. OpenAI presentation metadata is maintained in plugins/openai-interface.json. The package contains no hooks or MCP server. [OpenAI package structure](https://developers.openai.com/plugins/build/plugins), [Claude plugin reference](https://code.claude.com/docs/en/plugins-reference).
 
 ## Validate before sharing
 

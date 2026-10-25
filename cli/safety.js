@@ -28,5 +28,5 @@ export function fileBytes(root, relative) {
   } catch (e) { if (e.code === 'ENOENT') return null; throw e; }
 }
 export function assertTarget(target) {
-  if (typeof target !== 'string' || ['.branding', '.tech-branding-logo', '.git'].some(p => target === p || target.startsWith(`${p}/`))) throw new Error('Target cannot contain branding state, Git data, or installer records.');
+  if (typeof target !== 'string' || ['.branding', '.branded', '.tech-branding-logo', '.git'].some(p => target === p || target.startsWith(`${p}/`))) throw new Error('Target cannot contain branding state, Git data, or installer records.');
 }

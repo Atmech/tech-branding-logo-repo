@@ -1,9 +1,9 @@
 {
-  "displayName": "Tech Branding & Logo",
+  "displayName": "branded",
   "shortDescription": "Brand identities, campaigns, and industry-specific assets",
   "longDescription": "Develop names, logos, brand identities, campaigns, and assets within existing brands. Preserve project context and approved decisions across compatible agents.",
   "developerName": "Atmech",
   "category": "Productivity",
   "websiteURL": "https://github.com/Atmech/tech-branding-logo-repo",
-  "defaultPrompt": ["Use Tech Branding & Logo for this project. Read existing project state before asking questions."]
+  "defaultPrompt": ["Use branded for this project. Read existing project state before asking questions."]
 }

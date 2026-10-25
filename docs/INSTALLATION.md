@@ -5,9 +5,9 @@ Use the skill directly through a native package or a copied portable folder when
 From a reviewed checkout, invoke the CLI using its absolute path, from the project you want to use:
 
 ```sh
-node /path/to/tech-branding-logo-repo/bin/tech-branding-logo.js install --agent codex
-node /path/to/tech-branding-logo-repo/bin/tech-branding-logo.js install --agent claude --install-scope user
-node /path/to/tech-branding-logo-repo/bin/tech-branding-logo.js install --agent grok --project /path/to/project
+node /path/to/tech-branding-logo-repo/bin/branded.js install --agent codex
+node /path/to/tech-branding-logo-repo/bin/branded.js install --agent claude --install-scope user
+node /path/to/tech-branding-logo-repo/bin/branded.js install --agent grok --project /path/to/project
 ```
 
 A packaged CLI tarball can also be installed locally with npm. No claim is made that the package name is currently published or available on npm. Do not use an unverified registry command as a prerequisite for branding.
@@ -24,15 +24,15 @@ An explicit `--target` is a manual skill-directory path, resolved relative to th
 
 ## Records, updates and removal
 
-Project records are `.tech-branding-logo/install.json`. Personal records live under the user's home in `Library/Application Support/tech-branding-logo/` on macOS, `.local/share/tech-branding-logo/` on Linux, or `AppData/Local/tech-branding-logo/` on Windows. Personal skill directories still follow the host's discovery rules. Both scopes leave `.branding/` in the selected project.
+Project records are `.branded/install.json`. Personal records live under the user's home in `Library/Application Support/branded/` on macOS, `.local/share/branded/` on Linux, or `AppData/Local/branded/` on Windows. Personal skill directories still follow the host's discovery rules. Both scopes leave `.branding/` in the selected project.
 
 ```sh
-tech-branding-logo install --agent codex --dry-run
-tech-branding-logo doctor
-tech-branding-logo update --dry-run
-tech-branding-logo update
-tech-branding-logo uninstall --dry-run
-tech-branding-logo uninstall
+branded install --agent codex --dry-run
+branded doctor
+branded update --dry-run
+branded update
+branded uninstall --dry-run
+branded uninstall
 ```
 
 Use the same `--install-scope user` on doctor, update, uninstall and recover to manage personal records. Update uses the saved targets, never re-detection. To add another host, use install. Records merge across installs and retain original ownership. Existing untracked files require explicit `--adopt`, and adoption only accepts matching payload content. `--force` remains a compatibility flag; it does not permit replacing local edits.
@@ -46,3 +46,13 @@ Legacy version-1 manifests lack historical hashes. Update migrates conservativel
 Changes are planned under an exclusive process lock and journaled before they are applied. A caught write error rolls back. After a process interruption, use `recover` with the same scope/project, then repeat the intended operation. Recovery refuses to take over an active process or overwrite files edited after interruption; the journal is retained for inspection if there is a conflict. This provides recoverability, not a claim of crash-proof storage on every filesystem.
 
 Doctor returns a nonzero exit code for missing/invalid records, empty target lists, pending operations, missing files or hash changes. It prints host invocation instructions and warns about duplicate native copies. It verifies local files, not actual host discovery, model compliance, cloud sync or design-tool capabilities. Complete the checklist in COMPATIBILITY.md.
+
+## Moving from Tech Branding & Logo
+
+`branded` is the new skill identifier, CLI command and package name. New installs use `skills/branded` inside the host's discovery directory and `.branded/install.json` for project records (or the platform's personal data directory under `branded`). The repository URL is unchanged.
+
+1. With your previous reviewed checkout or installed CLI, run `tech-branding-logo uninstall --dry-run`, then `tech-branding-logo uninstall` using the same project and scope as the old install. Use `--install-scope user` for a personal installation. For native/plugin installations, use that host's removal controls instead.
+2. Review any files the old installer preserves. Keep personal edits and notes; move an edited old skill out of the host's discovery directory if it would otherwise appear alongside branded. Do not delete `.branding/`.
+3. Use this checkout's `node /path/to/tech-branding-logo-repo/bin/branded.js install --agent <host>` with the intended project and scope. Confirm `branded` appears in the host and resume the existing project.
+
+The new installer manages only branded records; it does not claim, rename or delete old installations. Old `tech-branding-logo` project-state identifiers remain accepted, and existing state, decisions, outputs and handoffs are preserved. New projects record `branded`. A public npm package or marketplace listing under the new name has not been published by this change.

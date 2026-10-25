@@ -33,7 +33,7 @@ export function parse(argv) {
   return {command,flags};
 }
 function help() {
-  console.log(`Tech Branding & Logo ${version}
+  console.log(`branded ${version}
 
 Commands:
   install / onboarding  Install the portable skill (default)

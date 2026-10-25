@@ -60,7 +60,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-
   justify-content: space-between;
   gap: 26px;
 }
-.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 800; letter-spacing: -.03em; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 24px; font-weight: 800; letter-spacing: -.05em; }
 .brand img { width: 30px; height: 30px; }
 .nav-links { display: flex; align-items: center; gap: 24px; color: var(--ink-soft); font-size: 14px; font-weight: 650; }
 .nav-links a:hover { color: var(--ink); }
