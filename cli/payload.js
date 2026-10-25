@@ -3,7 +3,7 @@ import path from 'node:path';
 import { packageRoot, skillName } from './config.js';
 import { hash, safePath } from './safety.js';
 
-export const payloadEntries = ['SKILL.md', 'references', 'schemas', 'templates', 'agents', 'LICENSE'];
+export const payloadEntries = ['SKILL.md', 'references', 'schemas', 'templates', 'agents', 'assets', 'LICENSE'];
 export function payload(root = packageRoot) {
   const files = new Map();
   function walk(rel) {

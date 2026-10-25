@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Develop branded’s self-identity: considered-cut logo, psychology and voice platform, editable artwork, public brand playbook and refreshed homepage with accurate installation controls.
+- Include brand icon assets in the canonical skill payload and OpenAI interface metadata.
+
 - Rename the skill, CLI, package, host metadata, installation directories and release archives to `branded`.
 - Update the repository homepage, static site and editable logo lockups; preserve GitHub repository URLs.
 - Keep legacy project-state identifiers valid and document an explicit, non-destructive transition from previous installations.

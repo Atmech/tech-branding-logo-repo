@@ -1,0 +1,58 @@
+{
+  "viewports": [
+    {
+      "file": "index.html",
+      "width": 1440,
+      "height": 1100,
+      "horizontalOverflow": false
+    },
+    {
+      "file": "brand-guide.html",
+      "width": 1440,
+      "height": 1100,
+      "horizontalOverflow": false
+    },
+    {
+      "file": "index.html",
+      "width": 390,
+      "height": 844,
+      "horizontalOverflow": false
+    },
+    {
+      "file": "brand-guide.html",
+      "width": 390,
+      "height": 844,
+      "horizontalOverflow": false
+    },
+    {
+      "file": "index.html",
+      "width": 320,
+      "height": 740,
+      "horizontalOverflow": false
+    },
+    {
+      "file": "brand-guide.html",
+      "width": 320,
+      "height": 740,
+      "horizontalOverflow": false
+    },
+    {
+      "file": "index.html",
+      "width": 768,
+      "height": 1024,
+      "horizontalOverflow": false
+    },
+    {
+      "file": "brand-guide.html",
+      "width": 768,
+      "height": 1024,
+      "horizontalOverflow": false
+    }
+  ],
+  "installationCases": 13,
+  "clipboard": true,
+  "localAssets": true,
+  "errors": [],
+  "clipboardFallback": true,
+  "reducedMotion": true
+}

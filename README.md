@@ -1,8 +1,12 @@
 # branded
 
+![branded — Make it mean something.](site/assets/brand/social-card.png)
+
+**A clear point of view. A brand you can build on.**
+
 A portable branding workflow for lasting identities, temporary campaigns, and assets within established brands. Supports technology, food/hospitality, real estate and fashion/apparel, with B2B and packaging guidance. MIT licensed. Skill and CLI: `branded`.
 
-[Preview the branded homepage source](site/index.html) · [Read the workflow](SKILL.md)
+[Homepage source](site/index.html) · [Brand playbook](site/brand-guide.html) · [Strategy and psychology](brand/identity/strategy.md) · [Read the workflow](SKILL.md)
 
 ## Install the skill
 
@@ -62,7 +66,7 @@ Resume by saying: “Read .branding/handoff.md and continue the brand project.�
 
 ## One workflow, several installation adapters
 
-`SKILL.md` and `references/` are the canonical expertise. The portable payload also includes schemas, the initialization template, optional OpenAI metadata and license. All distributions are built from that source; installation adapters do not maintain a competing branding methodology.
+`SKILL.md` and `references/` are the canonical expertise. The portable payload also includes schemas, the initialization template, optional OpenAI metadata and brand icons, and license. All distributions are built from that source; installation adapters do not maintain a competing branding methodology.
 
 The CLI supports Codex, Claude Code, Grok coding agent, Cursor, Windsurf/Cascade, Gemini CLI and a generic/manual target. Grok Bot uses a separate private skill library. Discovery and execution depend on the exact host, session and available tools; see the [documented paths and pending live-host checks](docs/COMPATIBILITY.md). Missing image, vector, file or research tools must be disclosed rather than represented as completed production output.
 

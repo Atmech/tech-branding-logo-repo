@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">branded monochrome mark</title>
-  <desc id="desc">A single-ink modular mark made from a beam, a stepped transparent cut, and rising blocks.</desc>
-  <path fill="currentColor" d="M4 4h56v56H40V31H30v21H22V22H4z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 68" role="img" aria-labelledby="title desc"><title id="title">branded monochrome mark</title><desc id="desc">branded monochrome mark</desc><path fill="currentColor" fill-rule="evenodd" d="M8 6H22V24C26 20 31 18 37 18C50 18 58 27 58 40C58 53 50 62 37 62H8ZM22 34V46H36L43 39V34Z"/></svg>

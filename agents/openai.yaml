@@ -1,5 +1,8 @@
 interface:
   display_name: "branded"
+  icon_small: "./assets/branded-icon.png"
+  icon_large: "./assets/branded-logo.svg"
+  brand_color: "#ff6a3d"
   short_description: "Brand identities, campaigns, and industry-specific assets"
   default_prompt: "Use $branded to develop this brand or campaign, first reading project state and inferring scope and relevant industry expertise; ask only consequential unanswered questions."
 
