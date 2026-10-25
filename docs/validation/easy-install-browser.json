@@ -1,0 +1,29 @@
+{
+  "views": [
+    {
+      "width": 1440,
+      "noHorizontalOverflow": true,
+      "accessibilityViolations": 0
+    },
+    {
+      "width": 768,
+      "noHorizontalOverflow": true,
+      "accessibilityViolations": 0
+    },
+    {
+      "width": 390,
+      "noHorizontalOverflow": true,
+      "accessibilityViolations": 0
+    },
+    {
+      "width": 320,
+      "noHorizontalOverflow": true,
+      "accessibilityViolations": 0
+    }
+  ],
+  "commandsChecked": 12,
+  "copy": true,
+  "fallback": true,
+  "errors": [],
+  "expandedOptionsAccessible": true
+}

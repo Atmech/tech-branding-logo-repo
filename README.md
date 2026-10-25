@@ -8,15 +8,21 @@ A portable branding workflow for lasting identities, temporary campaigns, and as
 
 [Homepage source](site/index.html) · [Brand playbook](site/brand-guide.html) · [Strategy and psychology](brand/identity/strategy.md) · [Read the workflow](SKILL.md)
 
-## Install the skill
+## Install in one line
 
-The workflow itself does not require Node, Git or a hosted server. Use a versioned portable skill folder or native plugin package through your agent's supported installation flow. See [native installation](docs/NATIVE_INSTALL.md) and [agent compatibility](docs/COMPATIBILITY.md).
+For Codex, paste this into your terminal:
 
-Release packages are prepared by the build below. Public release availability and marketplace approval are separate; this repository does not imply a listing is already published.
+```sh
+npx -y github:Atmech/tech-branding-logo-repo#6359f0a --agent codex --global
+```
+
+Then start a new chat and mention `$branded`. For Claude Code, change `codex` to `claude` and use `/branded`. Node.js 18+ and Git are required; no manual clone or folder copying. The command pins the current branded preview while the rename stack awaits merge.
+
+Prefer native plugins? Repository marketplaces for Codex and Claude Code are included. See [one-line setup, native plugins and the Skills ecosystem](docs/QUICKSTART.md).
 
 ## Optional CLI
 
-The dependency-free CLI needs Node 18+. From a reviewed checkout, run its executable from your project or provide `--project` explicitly:
+The GitHub command above runs the dependency-free CLI for you. For local development or advanced use, run its executable from your project or provide `--project` explicitly:
 
 ```sh
 node /path/to/tech-branding-logo-repo/bin/branded.js install --agent codex
@@ -66,7 +72,7 @@ Resume by saying: “Read .branding/handoff.md and continue the brand project.�
 
 ## One workflow, several installation adapters
 
-`SKILL.md` and `references/` are the canonical expertise. The portable payload also includes schemas, the initialization template, optional OpenAI metadata and brand icons, and license. All distributions are built from that source; installation adapters do not maintain a competing branding methodology.
+`SKILL.md` and `references/` are the canonical expertise. The portable payload also includes schemas, the initialization template, optional OpenAI metadata and brand icons, and license. The repository marketplace snapshot is generated with `npm run build:marketplace` and checked for drift in CI. All distributions are built from that source; installation adapters do not maintain a competing branding methodology.
 
 The CLI supports Codex, Claude Code, Grok coding agent, Cursor, Windsurf/Cascade, Gemini CLI and a generic/manual target. Grok Bot uses a separate private skill library. Discovery and execution depend on the exact host, session and available tools; see the [documented paths and pending live-host checks](docs/COMPATIBILITY.md). Missing image, vector, file or research tools must be disclosed rather than represented as completed production output.
 
@@ -78,6 +84,8 @@ Identity work retains `zero-to-brand`, `name-to-brand` and `brand-evolution` mod
 npm ci
 npm test
 npm run validate
+npm run build:marketplace
+npm run check:marketplace
 npm run build:release
 ```
 

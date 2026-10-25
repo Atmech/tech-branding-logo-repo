@@ -25,6 +25,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run validate
+      - run: npm run check:marketplace
       - run: node ./bin/branded.js --help
       - run: npm run build:release
       - uses: actions/upload-artifact@v4

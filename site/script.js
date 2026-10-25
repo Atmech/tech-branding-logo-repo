@@ -1,37 +1,36 @@
+import { installAgents, installCommand, nativePluginCommand } from './install-options.js';
+
 const agentSelect = document.querySelector('#install-agent');
-const scopeSelect = document.querySelector('#install-scope');
 const commandOutput = document.querySelector('#install-command');
 const copyStatus = document.querySelector('#copy-status');
-const projectPaths = { codex: '.agents/skills', claude: '.claude/skills', grok: '.grok/skills', cursor: '.cursor/skills', windsurf: '.windsurf/skills', gemini: '.gemini/skills', generic: 'skills' };
-const personalPaths = { codex: '.agents/skills', claude: '.claude/skills', grok: '.grok/skills', cursor: '.cursor/skills', windsurf: '.codeium/windsurf/skills', gemini: '.gemini/skills' };
 function updateInstall() {
-  if (!agentSelect || !scopeSelect || !commandOutput) return;
-  // Generic has no automatic personal discovery path in the CLI.
-  const userOption = scopeSelect.querySelector('option[value="user"]');
-  userOption.disabled = agentSelect.value === 'generic';
-  if (userOption.disabled) scopeSelect.value = 'project';
-  const scope = scopeSelect.value;
-  commandOutput.textContent = `node /path/to/tech-branding-logo-repo/bin/branded.js install --agent ${agentSelect.value}${scope === 'user' ? ' --install-scope user' : ''}`;
-  const relative = (scope === 'user' ? personalPaths : projectPaths)[agentSelect.value];
-  const detail = document.querySelector('#install-detail');
-  detail.textContent = `${scope === 'user' ? 'Personal skill: ~/' : 'Project skill: '}${relative}/branded. Project memory stays in .branding/.`;
-  if (agentSelect.value === 'grok') detail.textContent += ' Grok Bot uses a separate skill library.';
-  if (agentSelect.value === 'generic') detail.textContent += ' Load SKILL.md explicitly; automatic discovery is unverified.';
+  if (!agentSelect || !commandOutput) return;
+  const agent = agentSelect.value;
+  commandOutput.textContent = installCommand(agent);
+  document.querySelector('#project-install-command').textContent = installCommand(agent, { project: true });
+  document.querySelector('#install-detail').textContent = `Installs for all projects. ${installAgents[agent].prompt}`;
   copyStatus.textContent = '';
 }
-agentSelect?.addEventListener('change', updateInstall);
-scopeSelect?.addEventListener('change', updateInstall);
-document.querySelector('#copy-install')?.addEventListener('click', async () => {
-  const command = commandOutput.textContent;
+async function copyCommand(id, status) {
+  const element = document.getElementById(id);
   try {
-    await navigator.clipboard.writeText(command);
-    copyStatus.textContent = 'Copied. Replace the checkout path before running.';
+    await navigator.clipboard.writeText(element.textContent);
+    status.textContent = 'Copied. Paste into your terminal.';
   } catch {
     const range = document.createRange();
-    range.selectNodeContents(commandOutput);
+    range.selectNodeContents(element);
     const selection = window.getSelection();
     selection.removeAllRanges(); selection.addRange(range);
-    copyStatus.textContent = 'Command selected. Copy it with your keyboard.';
+    status.textContent = 'Command selected. Copy it with your keyboard.';
   }
-});
+}
+agentSelect?.addEventListener('change', updateInstall);
+document.querySelector('#copy-install')?.addEventListener('click', () => copyCommand('install-command', copyStatus));
+for (const button of document.querySelectorAll('[data-copy]')) {
+  button.addEventListener('click', () => copyCommand(button.dataset.copy, document.getElementById(button.dataset.copy === 'project-install-command' ? 'project-copy-status' : 'native-copy-status')));
+}
+for (const agent of ['codex', 'claude']) {
+  const element = document.getElementById(`native-${agent}`);
+  if (element) element.textContent = nativePluginCommand(agent);
+}
 updateInstall();

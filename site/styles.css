@@ -357,3 +357,27 @@ select:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
 .avatar-example img { flex-shrink: 0; }
 .guide-close .button { margin-top: 15px; }
 @media (max-width: 620px) { .guide-intro { padding: 60px 0 40px; } .guide-lead { font-size: 18px; } .guide-section { padding: 45px 0; } .guide-columns, .voice-table { grid-template-columns: 1fr; gap: 20px; } .voice-table { gap: 0; } .swatch-grid { grid-template-columns: 1fr 1fr; } .swatch-grid span { height: 95px; } .avatar-example { flex-direction: column; } }
+
+/* One command is the default path; native and project-only routes stay optional. */
+.easy-install { padding: 36px; background: var(--ink); color: var(--paper); }
+.easy-install-top { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 26px; }
+.easy-install-top h3 { margin: 16px 0 0; font: 400 42px/1.05 var(--serif); letter-spacing: -.05em; }
+.easy-install-top label { min-width: 210px; font-size: 12px; }
+.easy-install .install-command { padding: 24px; margin: 0 0 22px; font-size: 15px; }
+.easy-install-note { margin: 24px 0 10px; font-size: 13px; color: #c4c1b9; line-height: 1.65; }
+.easy-install .command-help { margin: 12px 0; font-size: 14px; line-height: 1.6; }
+.preview-note { margin: 22px 0 0; color: #c4c1b9; font-size: 11px; line-height: 1.6; }
+.install-next { margin: 36px 0 45px; }
+.install-next p { font: 400 clamp(27px,3vw,42px)/1.2 var(--serif); letter-spacing: -.04em; margin: 15px 0; }
+.install-next small { font-size: 13px; color: var(--ink-soft); line-height: 1.6; }
+.install-alternative { padding: 22px 0; border-top: 1px solid var(--line); }
+.install-alternative summary { cursor: pointer; font-size: 15px; font-weight: 700; line-height: 1.6; }
+.install-alternative summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 5px; }
+.install-alternative > p { max-width: 800px; font-size: 14px; line-height: 1.7; margin: 20px 0; }
+.native-choices { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+.native-choices article { min-width: 0; padding: 24px; background: var(--ink); color: var(--paper); }
+.native-choices h3 { font: 400 30px/1.1 var(--serif); letter-spacing: -.04em; }
+.native-choices p { font-size: 12px; line-height: 1.7; color: #c4c1b9; margin: 20px 0 0; }
+.install-alternative [role="status"] { display: block; margin-top: 15px; font-size: 12px; }
+.project-command { background: var(--paper); padding: 20px; border: 1px solid var(--line); font-size: 13px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width:620px) { .easy-install { padding: 26px 20px; } .easy-install-top { flex-direction: column; align-items: stretch; gap: 24px; } .easy-install-top h3 { font-size: 35px; } .easy-install .install-command { font-size: 12px; padding: 17px; } .native-choices { grid-template-columns: 1fr; } }

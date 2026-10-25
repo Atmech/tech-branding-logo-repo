@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "branded installation manifest v2",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "package",
+    "version",
+    "scope",
+    "installedAt",
+    "updatedAt",
+    "sourceRevision",
+    "payloadDigest",
+    "installs"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "package": {
+      "const": "branded"
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "enum": [
+        "project",
+        "user"
+      ]
+    },
+    "installedAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "sourceRevision": {
+      "type": "string"
+    },
+    "payloadDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "installs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "agent",
+          "target",
+          "createdDirectory",
+          "files"
+        ],
+        "properties": {
+          "agent": {
+            "type": "string"
+          },
+          "agents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "version": {
+            "type": "string"
+          },
+          "payloadDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "createdDirectory": {
+            "type": "boolean"
+          },
+          "directories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "path",
+                "hash",
+                "owned"
+              ],
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "hash": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                },
+                "owned": {
+                  "const": true
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

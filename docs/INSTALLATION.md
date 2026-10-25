@@ -1,4 +1,6 @@
-# Optional CLI installation
+# Advanced CLI installation
+
+For the simplest setup, use the [one-line quickstart](QUICKSTART.md). No checkout path is needed.
 
 Use the skill directly through a native package or a copied portable folder when possible. The CLI is optional and needs Node 18+; it has no runtime dependencies. Installing the executable globally and installing a skill personally are different actions.
 

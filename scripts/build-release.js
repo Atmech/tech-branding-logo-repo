@@ -7,21 +7,13 @@ import { metadata, packageRoot, skillName, version, sourceProvenance } from '../
 import { payload, payloadDigest } from '../cli/payload.js';
 import { hash } from '../cli/safety.js';
 import { zip } from './zip.js';
+import { pluginFiles } from './plugin-package.js';
 
 export function buildRelease(out=path.join(packageRoot,'dist'), {pack=true}={}) {
   fs.mkdirSync(out,{recursive:true});
-  const files=payload(), plain=new Map([...files].map(([name,bytes])=>[`${skillName}/${name}`,bytes]));
-  const plugin=new Map([...files].map(([name,bytes])=>[`skills/${skillName}/${name}`,bytes]));
-  const identity={name:skillName,version,description:metadata.description,author:{name:'Atmech'},homepage:'https://github.com/Atmech/tech-branding-logo-repo',repository:'https://github.com/Atmech/tech-branding-logo-repo',license:'MIT'};
-  const openai=JSON.parse(fs.readFileSync(path.join(packageRoot,'plugins/openai-interface.json'),'utf8'));
   const json=value=>Buffer.from(`${JSON.stringify(value,null,2)}\n`);
-  plugin.set('plugin.json',json({$schema:'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json',...identity,extensions:{'com.openai':{interface:openai}}}));
-  plugin.set('.codex-plugin/plugin.json',json({...identity,skills:'./skills/',interface:openai}));
-  plugin.set('.claude-plugin/plugin.json',json({...identity,skills:'./skills/'}));
-  plugin.set('LICENSE',files.get('LICENSE'));
-  plugin.set('INSTALL.md',Buffer.from('# Install branded\n\nSee docs/NATIVE_INSTALL.md for native installation and docs/COMPATIBILITY.md for host checks.\n'));
-  for(const name of fs.readdirSync(path.join(packageRoot,'docs')).sort()) plugin.set(`docs/${name}`,fs.readFileSync(path.join(packageRoot,'docs',name)));
-  plugin.set('PLUGIN_PUBLISHING.md',fs.readFileSync(path.join(packageRoot,'PLUGIN_PUBLISHING.md')));
+  const files=payload(), plain=new Map([...files].map(([name,bytes])=>[`${skillName}/${name}`,bytes]));
+  const plugin=pluginFiles();
   fs.writeFileSync(path.join(out,`${skillName}-${version}-skill.zip`),zip(plain));
   fs.writeFileSync(path.join(out,`${skillName}-${version}-plugin.zip`),zip(plugin));
   const source=sourceProvenance();

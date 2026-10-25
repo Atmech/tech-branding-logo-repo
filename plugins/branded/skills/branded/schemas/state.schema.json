@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Atmech/tech-branding-logo-repo/schemas/state.schema.json",
+  "title": "Branding project state",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "skill",
+    "mode",
+    "stage",
+    "completedStages",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "skill": {
+      "enum": [
+        "branded",
+        "tech-branding-logo"
+      ]
+    },
+    "skillVersion": {
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "zero-to-brand",
+        "name-to-brand",
+        "brand-evolution",
+        null
+      ]
+    },
+    "projectName": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "completedStages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "contextCompleteness": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "answers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    },
+    "scope": {
+      "enum": [
+        "brand-identity",
+        "campaign-direction",
+        "brand-application"
+      ]
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "activeWork": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "enum": [
+            "campaign-direction",
+            "brand-application"
+          ]
+        },
+        "statePath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "statePath"
+      ]
+    },
+    "campaign": {
+      "type": "object",
+      "properties": {
+        "freedom": {
+          "enum": [
+            "brand-led",
+            "brand-adjacent",
+            "independent"
+          ]
+        },
+        "fixedRequirements": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "permittedOverrides": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "scope": {
+            "const": "brand-identity"
+          }
+        },
+        "required": [
+          "scope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "mode": {
+            "enum": [
+              "zero-to-brand",
+              "name-to-brand",
+              "brand-evolution"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

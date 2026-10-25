@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Lead installation with a tested one-line GitHub command; default to personal scope and hide advanced options behind optional details.
+- Add repository marketplaces for Codex and Claude with a shared, drift-checked plugin bundle.
+
 - Develop branded’s self-identity: considered-cut logo, psychology and voice platform, editable artwork, public brand playbook and refreshed homepage with accurate installation controls.
 - Include brand icon assets in the canonical skill payload and OpenAI interface metadata.
 

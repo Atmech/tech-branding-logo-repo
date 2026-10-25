@@ -8,6 +8,8 @@ Updated 25 October 2026 against current official documentation. The workflow rem
 npm ci
 npm test
 npm run validate
+npm run build:marketplace
+npm run check:marketplace
 npm run build:release
 ```
 
@@ -20,6 +22,12 @@ The plugin ZIP places portable `plugin.json`, Codex and Claude compatibility man
 Inspect archives and checksums. Test both fresh project and personal installations, upgrades from the previous release, edited files, uninstall, recovery and duplicate host copies. Then run the host acceptance checklist in docs/COMPATIBILITY.md and record exact host versions. Automated filesystem checks cannot claim a live integration passed.
 
 Branding acceptance cases: zero-to-brand with naming before visuals; name-to-brand preserving an approved name; brand evolution retaining useful equity; a temporary campaign keeping master identity unchanged; and an application using the approved identity without reopening discovery. Inspect actual editable deliverables and relevant surface QC. Do not claim trademark clearance or unavailable tool capabilities.
+
+## Repository marketplaces
+
+`.agents/plugins/marketplace.json` and `.claude-plugin/marketplace.json` expose the same generated `plugins/branded/` plugin to Codex and Claude Code. Run `npm run build:marketplace` after editing canonical payload files, plugin metadata or bundled guides. `npm run check:marketplace` and package tests reject missing, stale or extra snapshot files. Release ZIPs and this snapshot use `scripts/plugin-package.js`, so there is one packaging source.
+
+The [quickstart](docs/QUICKSTART.md) contains preview commands. Publish the branch before advertising its marketplace reference; after the stack merges, move commands to a reviewed tag or main. Repository distribution needs no public-directory approval. It does not establish a curated marketplace listing.
 
 ## OpenAI public distribution
 

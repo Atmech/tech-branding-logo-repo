@@ -1,10 +1,12 @@
-# Install without Node or cloning the repository
+# Native plugins and manual installation
+
+For one-line installation, start with [QUICKSTART.md](QUICKSTART.md). Codex and Claude Code can install from the repository marketplace without manually downloading a ZIP. The manual routes below are optional.
 
 Obtain a versioned skill or plugin ZIP from a release published by the maintainer and check its SHA-256 against that release's SHA256SUMS. Release packages are prepared by `npm run build:release`; package generation does not mean a public release or marketplace listing already exists.
 
 ## Portable skill folder
 
-Extract `branded-<version>-skill.zip`. It contains one `branded/` directory with SKILL.md, references, schemas, templates, optional OpenAI metadata and LICENSE. Copy that directory into the host's project or personal skill directory from [COMPATIBILITY.md](COMPATIBILITY.md). Node and Git are unnecessary for using the workflow. Manual/native installs are managed by their host, not automatically registered in the CLI's manifest. The CLI can take ownership with `--adopt` only if all existing payload files match its bundled version exactly.
+Extract `branded-<version>-skill.zip`. It contains one `branded/` directory with SKILL.md, references, schemas, templates, assets, optional OpenAI metadata and LICENSE. Copy that directory into the host's project or personal skill directory from [COMPATIBILITY.md](COMPATIBILITY.md). Node and Git are unnecessary for using the workflow. Manual/native installs are managed by their host, not automatically registered in the CLI's manifest. The CLI can take ownership with `--adopt` only if all existing payload files match its bundled version exactly.
 
 ## Native plugin package
 
